@@ -2,10 +2,10 @@
 const t3 = {
 
   rows: [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-  ], // Change to function that creates board.
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ], // Change to method that creates board.
 
   currentPlayer: 1,
   movesCount: 0,
@@ -98,21 +98,27 @@ const t3 = {
 
   playRound: function(xPos, yPos){
     this.addMove(xPos, yPos, this.currentPlayer);
-    // console.log(this.printBoard());
     this.movesCount++;
+
+    const startCheckWinMove = this.rows.length * 2 - 1;
+    const maxMoves = Math.pow(this.rows.length, 2);
+
+
     // Begin checking for a win after the 5th move.
-    if(this.movesCount >= 5){
+    if(this.movesCount >= startCheckWinMove){
       const hasWon = this.checkForWin(xPos, yPos);
       if(hasWon){
         console.log(`Congratulations Player ${this.currentPlayer}, you won the game!`);
         return;
       }
     }
-    if(this.movesCount === 9){
+
+    // Check for a draw, i.e. all moves have been completed without a win
+    if(this.movesCount === maxMoves){
       console.log(`It's a draw!`);
       return;
     }
-    //Switch player for  the next round
+    // Switch players before the next round
     this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
   }, // playRound
 
