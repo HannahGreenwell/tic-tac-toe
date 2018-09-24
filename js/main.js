@@ -2,20 +2,29 @@
 const t3 = {
 
   rows: [
-    [1, 2, 3],
-    [4, 1, 6],
-    [7, 8, 1],
-  ],
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', ''],
+  ], // Change to function that creates board.
 
   width: 2, // Change to variable
+  currentPlayer: 1,
+  movesCount: 0,
 
-  addMove: function(xPos, yPos, player){
+  printBoard: function(){
+    for(let i = 0; i < this.rows.length; i++){
+      for(let j = 0; j < this.rows[i].length; j++){
+        console.log(this.rows[i][j]);
+      }
+    }
+  },
+
+  addMove: function(xPos, yPos, currentPlayer){
     const selectedCell = this.rows[xPos][yPos];
 
     // Check that selected cell has not already been taken.
     if(!selectedCell){
-      this.rows[xPos][yPos] = player;
-      this.printRows();
+      this.rows[xPos][yPos] = currentPlayer;
     } else {
       console.log('Please select an EMPTY cell.');
       return;
@@ -47,7 +56,7 @@ const t3 = {
   },
 
   checkDiagonal: function(xPos, yPos){
-    let allEqual = false;
+    let allEqual;
 
     if(xPos === yPos){
       const diagonal = [];
@@ -72,19 +81,37 @@ const t3 = {
 
   checkForWin: function(xPos, yPos){
     if(this.checkRow(xPos) === true){
-      console.log('You won! (Row)');
       return true;
     }
     if(this.checkColumn(yPos)){
-      console.log('You won! (Column)');
       return true;
     }
+    //Error: checkForWin(1,1);
     if(this.checkDiagonal(xPos, yPos)){
-      console.log('You won! (Diagonal)');
       return true;
     }
 
     return false;
   }, // checkForWin
+
+  playRound: function(xPos, yPos){
+    this.addMove(xPos, yPos, this.currentPlayer);
+    console.log(this.printBoard());
+    this.movesCount++;
+    // Begin checking for a win after the 5th move.
+    if(this.movesCount >= 5){
+      const hasWon = this.checkForWin(xPos, yPos);
+      if(hasWon){
+        console.log(`Congratulations Player ${this.currentPlayer}, you won the game!`);
+        return;
+      }
+    }
+    if(this.movesCount === 9){
+      console.log(`It's a draw!`);
+      return;
+    }
+    //Switch player for before the next round
+    this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
+  }, // playRound
 
 }; // ticTacToe
