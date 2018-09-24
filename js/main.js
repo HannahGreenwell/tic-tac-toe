@@ -2,9 +2,9 @@
 const t3 = {
 
   rows: [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
+    [1, '', 2],
+    ['', 1, ''],
+    [2, '', 1],
   ], // Change to function that creates board.
 
   width: 2, // Change to variable
@@ -31,21 +31,19 @@ const t3 = {
     }
   }, // addMove
 
-
-  // Takes an array of 3 cells and checks to see if all three are equal. Returns true if all three are equal and false if all three are not equal.
-  // CHECK FOR ERRORS
+  // Takes an array of n cells and checks to see if all are equal. Returns true if all are equal and false if all are not equal.
   checkAllEqual: function(cells){
     const firstCell = cells[0];
     const allEqual = cells.every(i => i === firstCell);
     return allEqual;
   }, // checkAllEqual
 
-  checkRow: function(xPos){
+  getRow: function(xPos){
     const row = this.rows[xPos];
     return this.checkAllEqual(row);
   },
 
-  checkColumn: function(yPos){
+  getColumn: function(yPos){
     const column = [];
 
     for(let i = 0; i < this.rows.length; i++){
@@ -55,48 +53,48 @@ const t3 = {
     return this.checkAllEqual(column);
   },
 
-  checkDiagonal: function(xPos, yPos){
-    let allEqual;
+  getDiagonal1: function(xPos, yPos){
+    const diagonal = [];
 
-    if(xPos === yPos){
-      const diagonal = [];
-
-      for(let i = 0; i < this.rows.length; i++){
-        diagonal[i] = this.rows[i][i];
-      }
-      allEqual = this.checkAllEqual(diagonal);
+    for(let i = 0; i < this.rows.length; i++){
+      diagonal[i] = this.rows[i][i];
     }
 
-    if((xPos + yPos) === this.width){
-      const diagonal = [];
+    return this.checkAllEqual(diagonal);
+  }, // getDiagonal1
 
-      for(let i = 0; i < this.rows.length; i++){
-        diagonal[i] = this.rows[i][this.width - i];
-      }
-      allEqual = this.checkAllEqual(diagonal); // Error: Changes previous true to false.
+  getDiagonal2: function(xPos, yPos){
+    const diagonal = [];
+
+    for(let i = 0; i < this.rows.length; i++){
+      diagonal[i] = this.rows[i][this.width - i];
     }
-
-    return allEqual;
-  },
+    return this.checkAllEqual(diagonal);
+  }, // getDiagonal2
 
   checkForWin: function(xPos, yPos){
-    if(this.checkRow(xPos) === true){
+    if(this.getRow(xPos)){
       return true;
     }
-    if(this.checkColumn(yPos)){
+    if(this.getColumn(yPos)){
       return true;
     }
-    //Error: checkForWin(1,1);
-    if(this.checkDiagonal(xPos, yPos)){
-      return true;
+    if(xPos === yPos){
+      if(this.getDiagonal1(xPos, yPos)){
+        return true;
+      }
     }
-
+    if(xPos + yPos === this.width){
+      if(this.getDiagonal2(xPos, yPos)){
+        return true;
+      }
+    }
     return false;
   }, // checkForWin
 
   playRound: function(xPos, yPos){
     this.addMove(xPos, yPos, this.currentPlayer);
-    console.log(this.printBoard());
+    // console.log(this.printBoard());
     this.movesCount++;
     // Begin checking for a win after the 5th move.
     if(this.movesCount >= 5){
@@ -110,7 +108,7 @@ const t3 = {
       console.log(`It's a draw!`);
       return;
     }
-    //Switch player for before the next round
+    //Switch player for  the next round
     this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
   }, // playRound
 
