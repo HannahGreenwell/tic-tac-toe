@@ -2,12 +2,11 @@
 const t3 = {
 
   rows: [
-    [1, '', 2],
-    ['', 1, ''],
-    [2, '', 1],
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
   ], // Change to function that creates board.
 
-  width: 2, // Change to variable
   currentPlayer: 1,
   movesCount: 0,
 
@@ -65,9 +64,10 @@ const t3 = {
 
   getDiagonal2: function(xPos, yPos){
     const diagonal = [];
+    const maxIndex = this.rows.length - 1;
 
     for(let i = 0; i < this.rows.length; i++){
-      diagonal[i] = this.rows[i][this.width - i];
+      diagonal[i] = this.rows[i][maxIndex - i];
     }
     return this.checkAllEqual(diagonal);
   }, // getDiagonal2
@@ -76,19 +76,23 @@ const t3 = {
     if(this.getRow(xPos)){
       return true;
     }
+
     if(this.getColumn(yPos)){
       return true;
     }
+
     if(xPos === yPos){
       if(this.getDiagonal1(xPos, yPos)){
         return true;
       }
     }
-    if(xPos + yPos === this.width){
+
+    if((xPos + yPos) === (this.rows.length - 1)){
       if(this.getDiagonal2(xPos, yPos)){
         return true;
       }
     }
+
     return false;
   }, // checkForWin
 
