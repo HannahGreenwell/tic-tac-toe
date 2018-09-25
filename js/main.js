@@ -2,9 +2,9 @@
 const t3 = {
 
   rows: [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
   ], // Change to method that creates board.
 
   currentPlayer: 1,
@@ -102,7 +102,6 @@ const t3 = {
 
     const startCheckWinMove = this.rows.length * 2 - 1;
     const maxMoves = Math.pow(this.rows.length, 2);
-
 
     // Begin checking for a win after the 5th move.
     if(this.movesCount >= startCheckWinMove){
