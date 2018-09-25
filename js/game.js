@@ -19,22 +19,23 @@ const t3 = {
   //   }
   // },
 
-  updateBoard: function(xPos, yPos, currentPlayer){
-    $(`td.${xPos}r.${yPos}c`).text(currentPlayer);
+  updateBoard: function(xPos, yPos, playerIcon){
+    $(`td.${xPos}r.${yPos}c`).text(playerIcon);
   },
 
-  // displayWinner: function(currentPlayer){
-  //   const player
-  //   $(``)
-  // },
+  displayWinner: function(){
+    $(`#player${this.currentPlayer} .icon`).css('background-color', 'red');
+    $(`#player${this.currentPlayer} .win`).css('visibility', 'visible');
+  },
 
-  addMove: function(xPos, yPos, currentPlayer){
+  addMove: function(xPos, yPos){
     const selectedCell = this.rows[xPos][yPos];
+    const playerIcon = (this.currentPlayer === 1) ? 'X' : 'O';
 
     // Check that selected cell has not already been taken.
     if(!selectedCell){
-      this.rows[xPos][yPos] = currentPlayer;
-      this.updateBoard(xPos, yPos, currentPlayer);
+      this.rows[xPos][yPos] = playerIcon;
+      this.updateBoard(xPos, yPos, playerIcon);
       this.movesCount++;
     } else {
       console.log('Please select an EMPTY cell.');
@@ -110,35 +111,35 @@ const t3 = {
 
   playRound: function(xPos, yPos){
     // Check if the game is still in play.
-    if(this.gameInPlay){
-      this.addMove(xPos, yPos, this.currentPlayer);
-
-      const startCheckWinMove = this.rows.length * 2 - 1;
-      const maxMoves = Math.pow(this.rows.length, 2);
-
-      // Begin checking for a win after the 5th move.
-      if(this.movesCount >= startCheckWinMove){
-        const hasWon = this.checkForWin(xPos, yPos);
-        if(hasWon){
-          console.log(`Congratulations Player ${this.currentPlayer}, you won the game!`);
-          this.gameInPlay = false;
-          return;
-        }
-      }
-
-      // Check for a draw, i.e. all moves have been completed without a win
-      if(this.movesCount === maxMoves){
-        console.log(`It's a draw!`);
-        this.gameInPlay = false;
-        return;
-      }
-
-      // Switch players before the next round
-      this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
-    } else {
+    if(!this.gameInPlay){
       console.log('Sorry, the game has already finished.');
       return;
     }
+
+    this.addMove(xPos, yPos, this.currentPlayer);
+
+    const startCheckWinMove = this.rows.length * 2 - 1;
+    const maxMoves = Math.pow(this.rows.length, 2);
+
+    // Begin checking for a win after the 5th move.
+    if(this.movesCount >= startCheckWinMove){
+      if(this.checkForWin(xPos, yPos)){
+        console.log(`Congratulations Player ${this.currentPlayer}, you won the game!`);
+        this.displayWinner();
+        this.gameInPlay = false;
+        return;
+      }
+    }
+
+    // Check for a draw, i.e. all moves have been completed without a win.
+    if(this.movesCount === maxMoves){
+      console.log(`It's a draw!`);
+      this.gameInPlay = false;
+    }
+
+    // Switch players before the next round
+    this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
+
   }, // playRound
 
 }; // ticTacToe

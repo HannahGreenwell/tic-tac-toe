@@ -24,9 +24,8 @@ h1, h2 {
 }
 
 #container {
-  width: 894px;
+  width: 96vw;
   margin: 0 auto;
-  padding-top: 20px;
 }
 
 table {
@@ -35,8 +34,8 @@ table {
 }
 
 td {
-  width: 130px;
-  height: 115px;
+  width: 15vw;
+  height: 13vw;
   border: solid 2px black;
   text-align: center;
   vertical-align: middle;
@@ -61,11 +60,11 @@ td {
 
 #player1, #player2 {
   display: inline-block;
-  width: 250px;
+  width: 25vw;
   vertical-align: middle;
 }
 
-.symbol {
+.icon {
   text-align: center;
   background-color: #BBB;
   color: white;
@@ -73,4 +72,10 @@ td {
   margin: 0 auto;
   padding: 20px;
   border-radius: 50%;
+}
+
+.win {
+  text-align: center;
+  padding: 20px;
+  visibility: hidden;
 }

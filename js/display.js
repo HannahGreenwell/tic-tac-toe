@@ -8,6 +8,4 @@ $(document).ready(function(){
     t3.playRound(xPos, yPos);
   });
 
-
-
 }); // $(document).ready
