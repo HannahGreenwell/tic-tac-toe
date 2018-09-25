@@ -11,13 +11,13 @@ const t3 = {
   movesCount: 0,
   gameInPlay: true,
 
-  printBoard: function(){
-    for(let i = 0; i < this.rows.length; i++){
-      for(let j = 0; j < this.rows[i].length; j++){
-        console.log(this.rows[i][j]);
-      }
-    }
-  },
+  // printBoard: function(){
+  //   for(let i = 0; i < this.rows.length; i++){
+  //     for(let j = 0; j < this.rows[i].length; j++){
+  //       console.log(this.rows[i][j]);
+  //     }
+  //   }
+  // },
 
   updateBoard: function(xPos, yPos, playerIcon){
     $(`td.${xPos}r.${yPos}c`).text(playerIcon);
@@ -37,9 +37,11 @@ const t3 = {
     for(let i = 0; i < this.rows.length; i++){
       for(let j = 0; j < this.rows[i].length; j++){
         this.rows[i][j] = 0;
-        $(`td.${i}r.${j}c`).text('');
+        this.updateBoard(i, j, '');
       }
     }
+    // Hide draw message
+    $('#alert').css('visibility', 'hidden');
     // Reset all global variables
     this.currentPlayer = 1;
     this.movesCount = 0;
