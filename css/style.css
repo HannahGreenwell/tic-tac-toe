@@ -5,7 +5,8 @@
 }
 
 body {
-  font-family: 'courier new ms', monospace;
+  font-family: 'courier', monospace;
+  letter-spacing: 1px;
 }
 
 h1 {
@@ -35,13 +36,13 @@ table {
 
 td {
   width: 130px;
-  height: 100px;
+  height: 115px;
   border: solid 2px black;
   text-align: center;
   vertical-align: middle;
 }
 
-.r0 .c0, .r0 .c1, .r0 .c2 {
+/* .r0 .c0, .r0 .c1, .r0 .c2 {
   border-top: none;
 }
 
@@ -55,7 +56,7 @@ td {
 
 .c2 {
   border-right: none;
-}
+} */
 
 
 #player1, #player2 {

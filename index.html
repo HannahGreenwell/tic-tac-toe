@@ -11,6 +11,7 @@
 
   <script src="js/jquery.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/display.js"></script>
 </head>
 
 <body>
@@ -21,38 +22,39 @@
     <div id="player1" class="player">
       <h2>Player 1</h2>
       <p class="symbol">X</p>
+      <p class="win"></p>
     </div><table
      id="board">
-      <tr class="r0">
-        <td class="c0">
-          
-        </td>
-        <td class="c1">
+      <tr>
+        <td class="0r 0c">
 
         </td>
-        <td class="c2">
+        <td class="0r 1c">
 
         </td>
-      </tr>
-      <tr class="r1">
-        <td class="c0">
-
-        </td>
-        <td class="c1">
-
-        </td>
-        <td class="c2">
+        <td class="0r 2c">
 
         </td>
       </tr>
-      <tr class="r2">
-        <td class="c0">
+      <tr>
+        <td class="1r 0c">
 
         </td>
-        <td class="c1">
+        <td class="1r 1c">
 
         </td>
-        <td class="c2">
+        <td class="1r 2c">
+
+        </td>
+      </tr>
+      <tr>
+        <td class="2r 0c">
+
+        </td>
+        <td class="2r 1c">
+
+        </td>
+        <td class="2r 2c">
 
         </td>
       </tr>
@@ -60,6 +62,7 @@
      id="player2" class="player">
       <h2>Player 2</h2>
       <p class="symbol">O</p>
+      <p class="win"></p>
     </div>
 
   </div> <!-- container -->
