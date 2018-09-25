@@ -28,9 +28,13 @@ const t3 = {
     $(`#player${this.currentPlayer} .win`).css('visibility', 'visible');
   },
 
+  displayDraw: function(){
+    $('#alert').css('visibility', 'visible');
+  },
+
   addMove: function(xPos, yPos){
     const selectedCell = this.rows[xPos][yPos];
-    const playerIcon = (this.currentPlayer === 1) ? 'X' : 'O';
+    const playerIcon = (this.currentPlayer === 1) ? '未' : '末';
 
     // Check that selected cell has not already been taken.
     if(!selectedCell){
@@ -38,7 +42,6 @@ const t3 = {
       this.updateBoard(xPos, yPos, playerIcon);
       this.movesCount++;
     } else {
-      console.log('Please select an EMPTY cell.');
       return;
     }
   }, // addMove
@@ -112,11 +115,10 @@ const t3 = {
   playRound: function(xPos, yPos){
     // Check if the game is still in play.
     if(!this.gameInPlay){
-      console.log('Sorry, the game has already finished.');
       return;
     }
 
-    this.addMove(xPos, yPos, this.currentPlayer);
+    this.addMove(xPos, yPos);
 
     const startCheckWinMove = this.rows.length * 2 - 1;
     const maxMoves = Math.pow(this.rows.length, 2);
@@ -124,7 +126,6 @@ const t3 = {
     // Begin checking for a win after the 5th move.
     if(this.movesCount >= startCheckWinMove){
       if(this.checkForWin(xPos, yPos)){
-        console.log(`Congratulations Player ${this.currentPlayer}, you won the game!`);
         this.displayWinner();
         this.gameInPlay = false;
         return;
@@ -133,7 +134,7 @@ const t3 = {
 
     // Check for a draw, i.e. all moves have been completed without a win.
     if(this.movesCount === maxMoves){
-      console.log(`It's a draw!`);
+      this.displayDraw();
       this.gameInPlay = false;
     }
 

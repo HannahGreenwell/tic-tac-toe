@@ -28,7 +28,7 @@ h1, h2 {
   margin: 0 auto;
 }
 
-table {
+#board {
   display: inline-block;
   vertical-align: middle;
 }
@@ -40,23 +40,6 @@ td {
   text-align: center;
   vertical-align: middle;
 }
-
-/* .r0 .c0, .r0 .c1, .r0 .c2 {
-  border-top: none;
-}
-
-.r2 .c0, .r2 .c1, .r2 .c2  {
-  border-bottom: none;
-}
-
-.c0 {
-  border-left: none;
-}
-
-.c2 {
-  border-right: none;
-} */
-
 
 #player1, #player2 {
   display: inline-block;
@@ -78,4 +61,38 @@ td {
   text-align: center;
   padding: 20px;
   visibility: hidden;
+}
+
+#alert {
+  margin-top: 20px;
+  font-size: 12px;
+  visibility: hidden;
+  color: red;
+}
+
+#reset {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border: solid 1px #BBB;
+}
+
+#reset:hover {
+  /* color: red; */
+  border-color: red;
+}
+
+.btm {
+  text-align: center;
+}
+
+#flashcard {
+  width: 100vw;
+  height: 100vh;
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
 }
