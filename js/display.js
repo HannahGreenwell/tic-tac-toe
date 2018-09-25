@@ -8,4 +8,8 @@ $(document).ready(function(){
     t3.playRound(xPos, yPos);
   });
 
+  $('#reset').on('click', function(){
+    t3.resetGame()
+  });
+
 }); // $(document).ready

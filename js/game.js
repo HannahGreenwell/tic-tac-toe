@@ -11,13 +11,13 @@ const t3 = {
   movesCount: 0,
   gameInPlay: true,
 
-  // printBoard: function(){
-  //   for(let i = 0; i < this.rows.length; i++){
-  //     for(let j = 0; j < this.rows[i].length; j++){
-  //       console.log(this.rows[i][j]);
-  //     }
-  //   }
-  // },
+  printBoard: function(){
+    for(let i = 0; i < this.rows.length; i++){
+      for(let j = 0; j < this.rows[i].length; j++){
+        console.log(this.rows[i][j]);
+      }
+    }
+  },
 
   updateBoard: function(xPos, yPos, playerIcon){
     $(`td.${xPos}r.${yPos}c`).text(playerIcon);
@@ -32,18 +32,25 @@ const t3 = {
     $('#alert').css('visibility', 'visible');
   },
 
-  addMove: function(xPos, yPos){
-    const selectedCell = this.rows[xPos][yPos];
-    const playerIcon = (this.currentPlayer === 1) ? '未' : '末';
-
-    // Check that selected cell has not already been taken.
-    if(!selectedCell){
-      this.rows[xPos][yPos] = playerIcon;
-      this.updateBoard(xPos, yPos, playerIcon);
-      this.movesCount++;
-    } else {
-      return;
+  resetGame: function(){
+    // Reset all squares to 0
+    for(let i = 0; i < this.rows.length; i++){
+      for(let j = 0; j < this.rows[i].length; j++){
+        this.rows[i][j] = 0;
+        $(`td.${i}r.${j}c`).text('');
+      }
     }
+    // Reset all global variables
+    this.currentPlayer = 1;
+    this.movesCount = 0;
+    this.gameInPlay = true;
+  }, // resetGame
+
+  addMove: function(xPos, yPos){
+    const playerIcon = (this.currentPlayer === 1) ? '未' : '末';
+    this.rows[xPos][yPos] = playerIcon;
+    this.updateBoard(xPos, yPos, playerIcon);
+    this.movesCount++;
   }, // addMove
 
   // Takes an array of n cells and checks to see if all are equal. Returns true if all are equal and false if all are not equal.
@@ -118,6 +125,10 @@ const t3 = {
       return;
     }
 
+    // Check that the cell hasn't already been taken.
+    if(this.rows[xPos][yPos]){
+      return;
+    }
     this.addMove(xPos, yPos);
 
     const startCheckWinMove = this.rows.length * 2 - 1;
