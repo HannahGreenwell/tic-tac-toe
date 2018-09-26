@@ -7,6 +7,7 @@
 body {
   font-family: 'courier', monospace;
   letter-spacing: 1px;
+  line-height: 22px;
 }
 
 h1 {
@@ -32,21 +33,41 @@ h1, h2 {
 
 #main {
   display: inline-block;
-  vertical-align: middle;
   width: 48vw;
   /* background-color: lightyellow; */
 }
 
-.createBoard {
+.assignCharacters {
+  margin: 50px 20px;
   text-align: center;
 }
 
-select {
+.createBoard {
+  text-align: center;
+  margin: 20px;
+  display: none;
+}
+
+.radio {
+  /* border: solid 1px black; */
+  padding: 10px;
+  text-align: left;
+}
+
+.createBoard p {
+  margin-bottom: 20px;
+}
+
+.createBoard button {
+  margin-top: 25px;
+}
+
+/* select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
   padding: 15px;
   border: none;
-}
+} */
 
 td {
   border: solid 2px black;
@@ -58,17 +79,24 @@ td {
   display: inline-block;
   width: 25vw;
   vertical-align: middle;
+  text-align: center;
   /* background-color: lightblue; */
 }
 
 .icon {
+  display: inline-block;
   text-align: center;
   background-color: #BBB;
-  color: white;
-  width: 55px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto;
-  padding: 20px;
   border-radius: 50%;
+}
+
+.icon p {
+  line-height: 80px;
+  color: white;
+  visibility: hidden;
 }
 
 .win {
@@ -86,20 +114,25 @@ td {
 
 .reset {
   margin-top: 20px;
-  padding: 10px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  border: solid 2px #BBB;
   visibility: hidden;
-}
-
-.reset:hover {
-  border-color: red;
 }
 
 .btm {
   text-align: center;
   /* background-color: lightgreen; */
+}
+
+button {
+  border: solid 2px #BBB;
+  background-color: white;
+  padding: 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+button:hover {
+  border-color: red;
 }
 
 /* #flashcard {

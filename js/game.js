@@ -1,23 +1,49 @@
 
 const t3 = {
 
-  rows: [
-    // [0, 0, 0],
-    // [0, 0, 0],
-    // [0, 0, 0],
+  rows: [],
+
+  charSet: [
+    {
+      char0: '未',
+      char0Pron: 'wei4',
+      char0Meaning: 'definition',
+      char1: '末',
+      char1Pron: 'mo4',
+      char1Meaning: 'definition',
+    },
+    {
+      char0: '己',
+      char0Pron: '4',
+      char0Meaning: 'definition',
+      char1: '已',
+      char1Pron: 'mo4',
+      char1Meaning: 'definition',
+    },
+    {
+      char0: '未',
+      char0Pron: 'wei4',
+      char0Meaning: 'definition',
+      char1: '末',
+      char1Pron: 'mo4',
+      char1Meaning: 'definition',
+    },
   ],
 
   currentPlayer: 1,
   movesCount: 0,
   gameInPlay: true,
 
-  printBoard: function(){
-    for(let i = 0; i < this.rows.length; i++){
-      for(let j = 0; j < this.rows[i].length; j++){
-        console.log(this.rows[i][j]);
-      }
-    }
-  },
+  player1Char: '',
+  player2Char: '',
+
+  // printBoard: function(){
+  //   for(let i = 0; i < this.rows.length; i++){
+  //     for(let j = 0; j < this.rows[i].length; j++){
+  //       console.log(this.rows[i][j]);
+  //     }
+  //   }
+  // },
 
   updateBoard: function(xPos, yPos, content){
     $(`td.${xPos}r-${yPos}c`).text(content);
@@ -50,6 +76,8 @@ const t3 = {
     $('.reset').css('visibility', 'hidden');
   }, // resetGame
 
+  // PLAY ROUND
+
   addMove: function(xPos, yPos){
     const playerIcon = (this.currentPlayer === 1) ? '未' : '末';
     this.rows[xPos][yPos] = playerIcon;
@@ -57,7 +85,6 @@ const t3 = {
     this.movesCount++;
   }, // addMove
 
-  // Takes an array of n cells and checks to see if all are equal. Returns true if all are equal and false if all are not equal.
   checkAllEqual: function(cells){
     const firstCell = cells[0];
     const allEqual = cells.every(i => i === firstCell);
@@ -159,6 +186,16 @@ const t3 = {
 
   }, // playRound
 
+  // GAME SETUP
+
+  assignCharacters: function(){
+    const random = Math.round(Math.random());
+    const randomOpposite = random === 0 ? 1 : 0;
+
+    this.player1Char = this.charSet[`char${random}`];
+    this.player2Char = this.charSet[`char${randomOpposite}`];
+  },
+
   createBoard: function(length){
     for(let i = 0; i < length; i++){
       this.rows[i] = [];
@@ -171,5 +208,4 @@ const t3 = {
     }
     $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
   },
-
 }; // ticTacToe

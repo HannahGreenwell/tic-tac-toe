@@ -1,11 +1,19 @@
 $(document).ready(function(){
 
-  $('select#lengths').on('change', function(){
-    const length = $(this).val();
+  $('button#assignCharacters').on('click', function(){
+    t3.assignCharacters();
+    $('div#player1 div.icon p').text(t3.player1Char).css('visibility', 'visible');
+
+
+    $('div#player2 div.icon p').text(t3.player2Char);
+  });
+
+  $('button#submitLength').on('click', function(){
+    const length = $('input[name=length]:checked').val();
     $('.createBoard').css('display', 'none');
     t3.createBoard(length);
     $('.reset').css('visibility', 'visible');
-  })
+  });
 
   // delegate the click event to the whole document,
   // and then get the browser to work out whether the click happened to the right element

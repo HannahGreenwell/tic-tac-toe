@@ -21,19 +21,50 @@
 
     <div id="player1" class="player">
       <h2>Player 1</h2>
-      <p class="icon">未</p>
+      <div class="icon">
+        <p>X</p>
+      </div>
       <p class="win">You Win!</p>
     </div><div
     id="main">
 
+      <div class="assignCharacters">
+        <p>Click the assign characters button to start the game.</p>
+        <button id="assignCharacters">ASSIGN CHARACTERS &gt&gt</button>
+      </div>
+
       <div class="createBoard">
-        <select name="lengths" id="lengths">
+        <!-- <select name="lengths" id="lengths">
           <option value="0" selected disabled>PLEASE CHOOSE A BOARD</option>
           <option value="3">Easy (3 x 3)</option>
           <option value="4">Medium (4 x 4)</option>
           <option value="6">Hard (6 x 6)</option>
           <option value="10">Extra Hard (10 x 10)</option>
-        </select>
+        </select> -->
+        <p>Please select a board size:</p>
+
+        <div class="radio">
+          <input type="radio" id="3" name="length" value="3" checked />
+            <label for="3">Easy (3 x 3)</label>
+        </div>
+
+        <div class="radio">
+          <input type="radio" id="4" name="length" value="4" />
+            <label for="4">Medium (4 x 4)</label>
+        </div>
+
+        <div class="radio">
+          <input type="radio" id="6" name="length" value="6" />
+            <label for="6">Hard (6 x 6)</label>
+        </div>
+
+        <div class="radio">
+        <input type="radio" id="10" name="length" value="10" />
+          <label for="10">Extra Hard (10 x 10)</label>
+        </div>
+
+        <button id="submitLength">MAKE MY BOARD &gt&gt</button>
+
       </div>
 
       <table>
@@ -42,13 +73,15 @@
     </div><div
     id="player2" class="player">
       <h2>Player 2</h2>
-      <p class="icon">末</p>
+      <div class="icon">
+        <p>O</p>
+      </div>
       <p class="win">You Win!</p>
     </div>
 
     <div class="btm">
       <p class="alert">It's a draw! You're both losers!</p>
-      <button class="reset">RESET</button>
+      <button class="reset">RESET &gt&gt</button>
     </div>
 
     <!-- <div id="flashcard"></div> -->
