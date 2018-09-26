@@ -33,21 +33,21 @@ const t3 = {
   },
 
   resetGame: function(){
-    // Reset all squares to 0
-    for(let i = 0; i < this.rows.length; i++){
-      for(let j = 0; j < this.rows[i].length; j++){
-        this.rows[i][j] = 0;
-        this.updateBoard(i, j, '');
-      }
-    }
-    // Reset CSS [REFACTOR]
-    $('.alert').css('visibility', 'hidden');
-    $(`#player${this.currentPlayer} .icon`).css('background-color', '#BBB');
-    $(`#player${this.currentPlayer} .win`).css('visibility', 'hidden');
+    // Remove all <tr> and <td>
+    $('tr').remove();
+
     // Reset all global variables
+    this.rows = [];
     this.currentPlayer = 1;
     this.movesCount = 0;
     this.gameInPlay = true;
+
+    // Reset CSS [ --> REFACTOR <-- ]
+    $('.alert').css('visibility', 'hidden');
+    $(`#player${this.currentPlayer} .icon`).css('background-color', '#BBB');
+    $(`#player${this.currentPlayer} .win`).css('visibility', 'hidden');
+    $('.createBoard').css('display', 'block');
+    $('.reset').css('visibility', 'hidden');
   }, // resetGame
 
   addMove: function(xPos, yPos){
