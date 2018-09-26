@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  $('select#lengths').on('change', function(){
+    const length = $(this).val();
+    $('.createBoard').css('display', 'none');
+    t3.createBoard(length);
+    $('.reset').css('visibility', 'visible');
+  })
+
   // delegate the click event to the whole document,
   // and then get the browser to work out whether the click happened to the right element
   $(document).on('click', 'td', function(){

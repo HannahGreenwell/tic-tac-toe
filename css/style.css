@@ -10,7 +10,8 @@ body {
 }
 
 h1 {
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 25px;
   font-size: 20px;
 }
 
@@ -24,18 +25,30 @@ h1, h2 {
 }
 
 #container {
-  width: 96vw;
+  width: 99vw;
   margin: 0 auto;
+  /* background-color: pink; */
 }
 
-#board {
+#main {
   display: inline-block;
   vertical-align: middle;
+  width: 48vw;
+  /* background-color: lightyellow; */
+}
+
+.createBoard {
+  text-align: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  padding: 15px;
+  border: none;
 }
 
 td {
-  width: 15vw;
-  height: 13vw;
   border: solid 2px black;
   text-align: center;
   vertical-align: middle;
@@ -45,6 +58,7 @@ td {
   display: inline-block;
   width: 25vw;
   vertical-align: middle;
+  /* background-color: lightblue; */
 }
 
 .icon {
@@ -65,7 +79,7 @@ td {
 
 .alert {
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 14px;
   visibility: hidden;
   color: red;
 }
@@ -76,6 +90,7 @@ td {
   font-size: 12px;
   letter-spacing: 1px;
   border: solid 2px #BBB;
+  visibility: hidden;
 }
 
 .reset:hover {
@@ -84,6 +99,7 @@ td {
 
 .btm {
   text-align: center;
+  /* background-color: lightgreen; */
 }
 
 /* #flashcard {

@@ -169,6 +169,7 @@ const t3 = {
         this.updateBoard(i, j, '');
       }
     }
+    $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
   },
 
 }; // ticTacToe
