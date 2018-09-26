@@ -29,7 +29,7 @@ const t3 = {
   },
 
   displayDraw: function(){
-    $('#alert').css('visibility', 'visible');
+    $('.alert').css('visibility', 'visible');
   },
 
   resetGame: function(){
@@ -40,8 +40,10 @@ const t3 = {
         this.updateBoard(i, j, '');
       }
     }
-    // Hide draw message
-    $('#alert').css('visibility', 'hidden');
+    // Reset CSS [REFACTOR]
+    $('.alert').css('visibility', 'hidden');
+    $(`#player${this.currentPlayer} .icon`).css('background-color', '#BBB');
+    $(`#player${this.currentPlayer} .win`).css('visibility', 'hidden');
     // Reset all global variables
     this.currentPlayer = 1;
     this.movesCount = 0;
