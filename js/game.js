@@ -2,25 +2,25 @@
 const t3 = {
 
   rows: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
-  ], // Change to method that creates board.
+    // [0, 0, 0],
+    // [0, 0, 0],
+    // [0, 0, 0],
+  ],
 
   currentPlayer: 1,
   movesCount: 0,
   gameInPlay: true,
 
-  // printBoard: function(){
-  //   for(let i = 0; i < this.rows.length; i++){
-  //     for(let j = 0; j < this.rows[i].length; j++){
-  //       console.log(this.rows[i][j]);
-  //     }
-  //   }
-  // },
+  printBoard: function(){
+    for(let i = 0; i < this.rows.length; i++){
+      for(let j = 0; j < this.rows[i].length; j++){
+        console.log(this.rows[i][j]);
+      }
+    }
+  },
 
-  updateBoard: function(xPos, yPos, playerIcon){
-    $(`td.${xPos}r.${yPos}c`).text(playerIcon);
+  updateBoard: function(xPos, yPos, content){
+    $(`#test td.${xPos}r.${yPos}c`).text(content);
   },
 
   displayWinner: function(){
@@ -157,5 +157,17 @@ const t3 = {
     this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
 
   }, // playRound
+
+  createBoard: function(length){
+    for(let i = 0; i < length; i++){
+      this.rows[i] = [];
+      $('#test').append('<tr></tr>');
+      for(let j = 0; j < length; j++){
+        this.rows[i][j] = 0;
+        $(`#test tr:nth-child(${i + 1})`).append(`<td class=${i}r ${j}c></td>`);
+        this.updateBoard(i, j, '');
+      }
+    }
+  },
 
 }; // ticTacToe
