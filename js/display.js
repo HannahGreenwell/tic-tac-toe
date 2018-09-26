@@ -1,11 +1,10 @@
 $(document).ready(function(){
 
-  $('button#assignCharacters').on('click', function(){
-    t3.assignCharacters();
+  $('button#characterSetUp').on('click', function(){
+    t3.assignCharSet();
     $('div#player1 div.icon p').text(t3.player1Char).css('visibility', 'visible');
-
-
-    $('div#player2 div.icon p').text(t3.player2Char);
+    $('div#player2 div.icon p').text(t3.player2Char).css('visibility', 'visible');
+    t3.displayFlashcard(0);
   });
 
   $('button#submitLength').on('click', function(){

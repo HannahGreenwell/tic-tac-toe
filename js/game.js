@@ -3,30 +3,30 @@ const t3 = {
 
   rows: [],
 
-  charSet: [
+  charSets: [
     {
       char0: '未',
-      char0Pron: 'wei4',
-      char0Meaning: 'definition',
+      char0Pron: 'we&#768i',
+      char0Defn: 'not yet (formal)',
       char1: '末',
-      char1Pron: 'mo4',
-      char1Meaning: 'definition',
+      char1Pron: 'mo&#768',
+      char1Defn: 'last, end',
     },
     {
       char0: '己',
-      char0Pron: '4',
-      char0Meaning: 'definition',
+      char0Pron: 'ji&#780',
+      char0Defn: 'self',
       char1: '已',
-      char1Pron: 'mo4',
-      char1Meaning: 'definition',
+      char1Pron: 'yi&#768',
+      char1Defn: 'already',
     },
     {
-      char0: '未',
-      char0Pron: 'wei4',
-      char0Meaning: 'definition',
-      char1: '末',
-      char1Pron: 'mo4',
-      char1Meaning: 'definition',
+      char0: '土',
+      char0Pron: 'tu&#780',
+      char0Defn: 'dirt, soil',
+      char1: '士',
+      char1Pron: 'shi&#768',
+      char1Defn: 'scholar, warrior',
     },
   ],
 
@@ -36,6 +36,7 @@ const t3 = {
 
   player1Char: '',
   player2Char: '',
+  assignedCharSet: {},
 
   // printBoard: function(){
   //   for(let i = 0; i < this.rows.length; i++){
@@ -187,13 +188,29 @@ const t3 = {
   }, // playRound
 
   // GAME SETUP
+  assignCharSet: function(){
+    const randomIndex = Math.floor(Math.random() * this.charSets.length);
+    this.assignedCharSet = this.charSets[randomIndex];
+    this.assignCharacters();
+  },
 
   assignCharacters: function(){
-    const random = Math.round(Math.random());
-    const randomOpposite = random === 0 ? 1 : 0;
+    const randomNum = Math.round(Math.random());
+    const oppositeNum = randomNum === 0 ? 1 : 0;
 
-    this.player1Char = this.charSet[`char${random}`];
-    this.player2Char = this.charSet[`char${randomOpposite}`];
+    this.player1Char = this.assignedCharSet[`char${randomNum}`];
+    this.player2Char = this.assignedCharSet[`char${oppositeNum}`];
+  },
+
+  displayFlashcard: function(playerNum){
+    debugger;
+    const character = playerNum === 0 ? this.player1Char : this.player2Char;
+    const pronunciation = this.assignedCharSet[`char${playerNum}Pron`];
+    const definition = this.assignedCharSet[`char${playerNum}Defn`];
+    $('div.characterSetUp').css('display', 'none');
+    $('div.flashcard').append(`<p>Pronunciation: ${pronunciation}</p>`);
+    $('div.flashcard').append(`<p>${character}`);
+    $('div.flashcard').append(`<p>Definition: ${definition}</p>`);
   },
 
   createBoard: function(length){

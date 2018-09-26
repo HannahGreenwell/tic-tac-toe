@@ -37,9 +37,22 @@ h1, h2 {
   /* background-color: lightyellow; */
 }
 
-.assignCharacters {
+.characterSetUp {
   margin: 50px 20px;
   text-align: center;
+}
+
+.flashcard {
+  text-align: center;
+}
+
+.flashcard p {
+  margin: 40px;
+}
+
+.flashcard p:nth-child(2) {
+  font-size: 50px;
+  color: red;
 }
 
 .createBoard {
@@ -78,8 +91,9 @@ td {
 #player1, #player2 {
   display: inline-block;
   width: 25vw;
-  vertical-align: middle;
+  vertical-align: top;
   text-align: center;
+  padding-top: 20px;
   /* background-color: lightblue; */
 }
 
