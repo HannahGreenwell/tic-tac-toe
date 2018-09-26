@@ -20,7 +20,7 @@ const t3 = {
   },
 
   updateBoard: function(xPos, yPos, content){
-    $(`#test td.${xPos}r.${yPos}c`).text(content);
+    $(`td.${xPos}r-${yPos}c`).text(content);
   },
 
   displayWinner: function(){
@@ -125,6 +125,7 @@ const t3 = {
 
   playRound: function(xPos, yPos){
     // Check if the game is still in play.
+    // debugger;
     if(!this.gameInPlay){
       return;
     }
@@ -161,10 +162,10 @@ const t3 = {
   createBoard: function(length){
     for(let i = 0; i < length; i++){
       this.rows[i] = [];
-      $('#test').append('<tr></tr>');
+      $('table').append('<tr></tr>');
       for(let j = 0; j < length; j++){
         this.rows[i][j] = 0;
-        $(`#test tr:nth-child(${i + 1})`).append(`<td class=${i}r ${j}c></td>`);
+        $(`table tr:nth-child(${i + 1})`).append(`<td class=${i}r-${j}c></td>`);
         this.updateBoard(i, j, '');
       }
     }
