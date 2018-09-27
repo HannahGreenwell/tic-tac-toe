@@ -74,7 +74,9 @@ const t3 = {
 
     // Reset CSS [ --> REFACTOR <-- ]
     $(`.icon p`).css('visibility', 'hidden');
-    $(`#player${this.currentPlayer} .win`).css('visibility', 'hidden');
+    $(`.icon`).css('backgroundColor', '#BBB');
+    $(`p.win`).css('visibility', 'hidden');
+    $('button.cheat').css('visibility', 'hidden');
     $('.alert').css('visibility', 'hidden');
     $('.reset').css('visibility', 'hidden');
     $('div.setUp p').html("Hey <span class='red'>Player 1</span>, you're up first! Hit that assign character button to get started.");

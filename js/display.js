@@ -47,6 +47,11 @@ $(document).ready(function(){
     t3.createBoard(length);
     $('input#lengthInput').text('');
     $('.reset').css('visibility', 'visible');
+    $('button.cheat').css('visibility', 'visible');
+  });
+
+  $('button.cheat').on('mousedown', function(){
+
   });
 
   $('input#lengthInput').on('focus', function(){
