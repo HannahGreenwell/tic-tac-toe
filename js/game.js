@@ -5,28 +5,28 @@ const t3 = {
 
   charSets: [
     {
-      char0: '未',
-      char0Pron: 'we&#768i',
-      char0Defn: 'not yet (formal)',
-      char1: '末',
-      char1Pron: 'mo&#768',
-      char1Defn: 'last, end',
+      char1: '未',
+      pron1: 'we&#768i',
+      defn1: 'not yet (formal)',
+      char2: '末',
+      pron2: 'mo&#768',
+      defn2: 'last, end',
     },
     {
-      char0: '己',
-      char0Pron: 'ji&#780',
-      char0Defn: 'self',
-      char1: '已',
-      char1Pron: 'yi&#768',
-      char1Defn: 'already',
+      char1: '己',
+      pron1: 'ji&#780',
+      defn1: 'self',
+      char2: '已',
+      pron2: 'yi&#768',
+      defn2: 'already',
     },
     {
-      char0: '土',
-      char0Pron: 'tu&#780',
-      char0Defn: 'dirt, soil',
-      char1: '士',
-      char1Pron: 'shi&#768',
-      char1Defn: 'scholar, warrior',
+      char1: '土',
+      pron1: 'tu&#780',
+      defn1: 'dirt, soil',
+      char2: '士',
+      pron2: 'shi&#768',
+      defn2: 'scholar, warrior',
     },
   ],
 
@@ -34,17 +34,7 @@ const t3 = {
   movesCount: 0,
   gameInPlay: true,
 
-  player1Char: '',
-  player2Char: '',
   assignedCharSet: {},
-
-  // printBoard: function(){
-  //   for(let i = 0; i < this.rows.length; i++){
-  //     for(let j = 0; j < this.rows[i].length; j++){
-  //       console.log(this.rows[i][j]);
-  //     }
-  //   }
-  // },
 
   updateBoard: function(xPos, yPos, content){
     $(`td.${xPos}r-${yPos}c`).text(content);
@@ -68,8 +58,6 @@ const t3 = {
     this.currentPlayer = 1;
     this.movesCount = 0;
     this.gameInPlay = true;
-    this.player1Char = '';
-    this.player2Char = '';
     this.assignedCharSet = {};
 
     // Reset CSS [ --> REFACTOR <-- ]
@@ -87,7 +75,7 @@ const t3 = {
 
   // PLAY ROUND
   addMove: function(xPos, yPos){
-    const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet[this.player1Char]) : (this.assignedCharSet[this.player2Char]);
+    const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet.char1) : (this.assignedCharSet.char2);
 
     this.rows[xPos][yPos] = playerIcon;
     this.updateBoard(xPos, yPos, playerIcon);
@@ -161,7 +149,6 @@ const t3 = {
 
   playRound: function(xPos, yPos){
     // Check if the game is still in play.
-    // debugger;
     if(!this.gameInPlay){
       return;
     }
@@ -199,24 +186,12 @@ const t3 = {
   assignCharSet: function(){
     const randomIndex = Math.floor(Math.random() * this.charSets.length);
     this.assignedCharSet = this.charSets[randomIndex];
-    this.assignCharacters();
-  },
-
-  assignCharacters: function(){
-    const randomNum = Math.round(Math.random());
-    const oppositeNum = randomNum === 0 ? 1 : 0;
-
-    this.player1Char = `char${randomNum}`;
-    this.player2Char = `char${oppositeNum}`;
   },
 
   displayFlashcard: function(playerNum){
-    // debugger;
-    const playerChar = playerNum === 1 ? this.player1Char : this.player2Char;
-
-    const character = this.assignedCharSet[`${playerChar}`];
-    const pronunciation = this.assignedCharSet[`${playerChar}Pron`];
-    const definition = this.assignedCharSet[`${playerChar}Defn`];
+    const character = this.assignedCharSet[`char${playerNum}`];
+    const pronunciation = this.assignedCharSet[`pron${playerNum}`];
+    const definition = this.assignedCharSet[`defn${playerNum}`];
 
     $('div.flashcard h3').text(`Player ${playerNum} you are:`);
     $('div.flashcard p.pronunciation').html(`Pronunciation: ${pronunciation}`);

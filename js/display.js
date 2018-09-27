@@ -5,7 +5,7 @@ $(document).ready(function(){
     // Assign character set and then assign individual player characters
     t3.assignCharSet();
     // Display player 1's character in the grey circle
-    $(`div#player1 div.icon p`).text(t3.assignedCharSet[`${t3.player1Char}`]).css('visibility', 'visible');
+    $(`div#player1 div.icon p`).text(t3.assignedCharSet.char1).css('visibility', 'visible');
     // Display the flashcard
     $('div.flashcard').css('display', 'block');
     t3.displayFlashcard(1);
@@ -17,12 +17,12 @@ $(document).ready(function(){
       $('button#assignP1').css('display', 'none');
       $('button#assignP2').css('display', 'inline');
       $('div.setUp').css('display', 'block');
-    }, 1000);
+    }, 4000);
   });
 
   $('button#assignP2').on('click', function(){
     $('div.setUp').css('display', 'none');
-    $(`div#player2 div.icon p`).text(t3.assignedCharSet[`${t3.player2Char}`]).css('visibility', 'visible');
+    $(`div#player2 div.icon p`).text(t3.assignedCharSet.char2).css('visibility', 'visible');
     $('div.flashcard').css('display', 'block');
     t3.displayFlashcard(2);
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
       $('button#assignP2').css('display', 'none');
       $('button#boardSetUp').css('display', 'inline');
       $('div.setUp').css('display', 'block');
-    }, 1000);
+    }, 4000);
   });
 
   $('button#boardSetUp').on('click', function(){
@@ -51,7 +51,15 @@ $(document).ready(function(){
   });
 
   $('button.cheat').on('mousedown', function(){
+    const playerNum = $(this).val();
+    const playerChar = t3.assignedCharSet[`char${playerNum}`];
+    $(`td:contains(${playerChar})`).css('color', 'red');
+  });
 
+  $('button.cheat').on('mouseup', function(){
+    const playerNum = $(this).val();
+    const playerChar = t3.assignedCharSet[`char${playerNum}`];
+    $(`td:contains(${playerChar})`).css('color', 'black');
   });
 
   $('input#lengthInput').on('focus', function(){
