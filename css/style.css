@@ -37,12 +37,43 @@ h1, h2 {
   /* background-color: lightyellow; */
 }
 
-.characterSetUp {
-  margin: 50px 20px;
+.setUp {
+  padding: 50px 0;
   text-align: center;
+  /* background-color: pink; */
+}
+
+.red {
+  color: red;
+}
+
+.setUp button#assignP2 {
+  display: none;
+}
+
+.setUp button#boardSetUp {
+  display: none;
+}
+
+.setUp button {
+  margin-top: 30px;
+}
+
+.boardSetUp {
+  display: none;
+}
+
+.boardSetUp #lengthInput {
+  display: block;
+  margin: 30px auto 0;
+  font-size: 12px;
+  color: #BBB;
+  padding: 15px;
+  width: 60%;
 }
 
 .flashcard {
+  display: none;
   text-align: center;
 }
 
@@ -61,39 +92,20 @@ h1, h2 {
   padding: 30px;
 }
 
-.flashcard button#assignP2 {
-  visibility: hidden;
-}
-
-.flashcard button#boardSetUp {
-  visibility: hidden;
-}
-
-.createBoard {
+/* .createBoard {
   text-align: center;
   margin: 20px;
   display: none;
 }
 
 .radio {
-  /* border: solid 1px black; */
+  border: solid 1px black;
   padding: 10px;
   text-align: left;
 }
 
 .createBoard p {
   margin-bottom: 20px;
-}
-
-.createBoard button {
-  margin-top: 25px;
-}
-
-/* select {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  padding: 15px;
-  border: none;
 } */
 
 td {
@@ -127,10 +139,16 @@ td {
   visibility: hidden;
 }
 
+
 .win {
   text-align: center;
   padding: 20px;
   visibility: hidden;
+}
+
+.btm {
+  text-align: center;
+  /* background-color: lightgreen; */
 }
 
 .alert {
@@ -145,11 +163,6 @@ td {
   visibility: hidden;
 }
 
-.btm {
-  text-align: center;
-  /* background-color: lightgreen; */
-}
-
 button {
   border: solid 2px #BBB;
   background-color: white;
@@ -162,13 +175,3 @@ button {
 button:hover {
   border-color: red;
 }
-
-/* #flashcard {
-  width: 100vw;
-  height: 100vh;
-  background-color: yellow;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-} */

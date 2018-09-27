@@ -1,34 +1,49 @@
 $(document).ready(function(){
 
   $('button#assignP1').on('click', function(){
-    $('div.characterSetUp').css('display', 'none');
+    $('div.setUp').css('display', 'none');
+    // Assign character set and then assign individual player characters
     t3.assignCharSet();
+    // Display player 1's character in the grey circle
     $(`div#player1 div.icon p`).text(t3.assignedCharSet[`${t3.player1Char}`]).css('visibility', 'visible');
+    // Display the flashcard
+    $('div.flashcard').css('display', 'block');
     t3.displayFlashcard(1);
 
-    window.setTimeout(function(){
-      $('button#assignP2').css('visibility', 'visible');
-    }, 5000);
+    // Change the text for charSetUp and display assignP2 button
+    setTimeout(function(){
+      $('div.flashcard').css('display', 'none');
+      $('div.setUp p').html("Hey <span class='red'>Player 2</span>, you're turn now! Give that assign character button a little click.");
+      $('button#assignP1').css('display', 'none');
+      $('button#assignP2').css('display', 'inline');
+      $('div.setUp').css('display', 'block');
+    }, 1000);
   });
 
   $('button#assignP2').on('click', function(){
-    $('button#assignP2').css('visibility', 'hidden');
+    $('div.setUp').css('display', 'none');
     $(`div#player2 div.icon p`).text(t3.assignedCharSet[`${t3.player2Char}`]).css('visibility', 'visible');
+    $('div.flashcard').css('display', 'block');
     t3.displayFlashcard(2);
 
-    window.setTimeout(function(){
-      $('button#boardSetUp').css('visibility', 'visible');
-    }, 5000);
+    setTimeout(function(){
+      $('div.flashcard').css('display', 'none');
+      $('div.setUp p').html("Altogether now... hit the button below to start setting up your board.");
+      $('button#assignP2').css('display', 'none');
+      $('button#boardSetUp').css('display', 'inline');
+      $('div.setUp').css('display', 'block');
+    }, 1000);
   });
 
   $('button#boardSetUp').on('click', function(){
-    $('div.flashcard').css('display', 'none');
-    $('div.createBoard').css('display', 'block');
+    $('button#boardSetUp').css('display', 'none');
+    $('div.setUp p').html("Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.");
+    $('div.boardSetUp').css('display', 'block');
   });
 
-  $('button#submitLength').on('click', function(){
-    const length = $('input[name=length]:checked').val();
-    $('.createBoard').css('display', 'none');
+  $('button#createBoard').on('click', function(){
+    const length = $('input#lengthInput').val();
+    $('div.setUp').css('display', 'none');
     t3.createBoard(length);
     $('.reset').css('visibility', 'visible');
   });

@@ -27,10 +27,15 @@
       <p class="win">You Win!</p>
     </div><div
     id="main">
-
-      <div class="characterSetUp">
-        <p>Click the assign characters button to start the game.</p>
-        <button id="assignP1">P1 ASSIGN CHARACTER &gt&gt</button>
+      <div class="setUp">
+        <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
+        <button id="assignP1">ASSIGN CHARACTER &gt&gt</button>
+        <button id="assignP2">ASSIGN CHARACTER &gt&gt</button>
+        <button id="boardSetUp">BOARD SETUP &gt&gt</button>
+        <div class="boardSetUp">
+          <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
+          <button id="createBoard">MAKE MY BOARD &gt&gt</button>
+        </div>
       </div>
 
       <div class="flashcard">
@@ -38,18 +43,16 @@
         <p class="pronunciation"></p>
         <p class="character"></p>
         <p class="definition"></p>
-        <button id="assignP2">P2 ASSIGN CHARACTER &gt&gt</button>
-        <button id="boardSetUp">GO TO BOARD SET UP &gt&gt</button>
       </div>
 
-      <div class="createBoard">
-        <!-- <select name="lengths" id="lengths">
+      <!-- <div class="createBoard">
+        <select name="lengths" id="lengths">
           <option value="0" selected disabled>PLEASE CHOOSE A BOARD</option>
           <option value="3">Easy (3 x 3)</option>
           <option value="4">Medium (4 x 4)</option>
           <option value="6">Hard (6 x 6)</option>
           <option value="10">Extra Hard (10 x 10)</option>
-        </select> -->
+        </select>
         <p>Please select a board size:</p>
 
         <div class="radio">
@@ -74,7 +77,7 @@
 
         <button id="submitLength">MAKE MY BOARD &gt&gt</button>
 
-      </div>
+      </div> -->
 
       <table></table>
 
@@ -91,8 +94,6 @@
       <p class="alert">It's a draw! You're both losers!</p>
       <button class="reset">RESET &gt&gt</button>
     </div>
-
-    <!-- <div id="flashcard"></div> -->
 
   </div> <!-- container -->
 
