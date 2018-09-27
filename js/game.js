@@ -34,8 +34,6 @@ const t3 = {
   movesCount: 0,
   gameInPlay: true,
 
-  player1Char: '',
-  player2Char: '',
   assignedCharSet: {},
 
   // printBoard: function(){
@@ -211,7 +209,6 @@ const t3 = {
   },
 
   displayFlashcard: function(playerNum){
-    // debugger;
     const playerChar = playerNum === 1 ? this.player1Char : this.player2Char;
 
     const character = this.assignedCharSet[`${playerChar}`];
