@@ -68,13 +68,19 @@ const t3 = {
     this.currentPlayer = 1;
     this.movesCount = 0;
     this.gameInPlay = true;
+    this.player1Char = '';
+    this.player2Char = '';
+    this.assignedCharSet = {};
 
     // Reset CSS [ --> REFACTOR <-- ]
-    $('.alert').css('visibility', 'hidden');
-    $(`#player${this.currentPlayer} .icon`).css('background-color', '#BBB');
+    $(`.icon p`).css('visibility', 'hidden');
     $(`#player${this.currentPlayer} .win`).css('visibility', 'hidden');
-    $('.createBoard').css('display', 'block');
+    $('.alert').css('visibility', 'hidden');
     $('.reset').css('visibility', 'hidden');
+    $('div.setUp p').html("Hey <span class='red'>Player 1</span>, you're up first! Hit that assign character button to get started.");
+    $('div.boardSetUp').css('display', 'none');
+    $('button#assignP1').css('display', 'inline');
+    $('div.setUp').css('display', 'block');
   }, // resetGame
 
   // PLAY ROUND

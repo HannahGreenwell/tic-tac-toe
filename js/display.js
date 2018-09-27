@@ -45,7 +45,12 @@ $(document).ready(function(){
     const length = $('input#lengthInput').val();
     $('div.setUp').css('display', 'none');
     t3.createBoard(length);
+    $('input#lengthInput').text('');
     $('.reset').css('visibility', 'visible');
+  });
+
+  $('input#lengthInput').on('focus', function(){
+    $(this).val('');
   });
 
   // Delegate the click event to the whole document, and then get the browser to work out whether the click happened to the right element
