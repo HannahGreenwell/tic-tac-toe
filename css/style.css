@@ -46,13 +46,27 @@ h1, h2 {
   text-align: center;
 }
 
+.flashcard h3 {
+  margin: 40px;
+  text-transform: uppercase;
+}
+
 .flashcard p {
   margin: 40px;
 }
 
-.flashcard p:nth-child(2) {
+.flashcard .character {
   font-size: 50px;
   color: red;
+  padding: 30px;
+}
+
+.flashcard button#assignP2 {
+  visibility: hidden;
+}
+
+.flashcard button#boardSetUp {
+  visibility: hidden;
 }
 
 .createBoard {

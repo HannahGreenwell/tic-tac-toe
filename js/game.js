@@ -78,9 +78,9 @@ const t3 = {
   }, // resetGame
 
   // PLAY ROUND
-
   addMove: function(xPos, yPos){
-    const playerIcon = (this.currentPlayer === 1) ? '未' : '末';
+    const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet[this.player1Char]) : (this.assignedCharSet[this.player2Char]);
+
     this.rows[xPos][yPos] = playerIcon;
     this.updateBoard(xPos, yPos, playerIcon);
     this.movesCount++;
@@ -198,19 +198,22 @@ const t3 = {
     const randomNum = Math.round(Math.random());
     const oppositeNum = randomNum === 0 ? 1 : 0;
 
-    this.player1Char = this.assignedCharSet[`char${randomNum}`];
-    this.player2Char = this.assignedCharSet[`char${oppositeNum}`];
+    this.player1Char = `char${randomNum}`;
+    this.player2Char = `char${oppositeNum}`;
   },
 
   displayFlashcard: function(playerNum){
-    debugger;
-    const character = playerNum === 0 ? this.player1Char : this.player2Char;
-    const pronunciation = this.assignedCharSet[`char${playerNum}Pron`];
-    const definition = this.assignedCharSet[`char${playerNum}Defn`];
-    $('div.characterSetUp').css('display', 'none');
-    $('div.flashcard').append(`<p>Pronunciation: ${pronunciation}</p>`);
-    $('div.flashcard').append(`<p>${character}`);
-    $('div.flashcard').append(`<p>Definition: ${definition}</p>`);
+    // debugger;
+    const playerChar = playerNum === 1 ? this.player1Char : this.player2Char;
+
+    const character = this.assignedCharSet[`${playerChar}`];
+    const pronunciation = this.assignedCharSet[`${playerChar}Pron`];
+    const definition = this.assignedCharSet[`${playerChar}Defn`];
+
+    $('div.flashcard h3').text(`Player ${playerNum} you are:`);
+    $('div.flashcard p.pronunciation').html(`Pronunciation: ${pronunciation}`);
+    $('div.flashcard p.character').html(`${character}`);
+    $('div.flashcard p.definition').html(`Definition: ${definition}`);
   },
 
   createBoard: function(length){

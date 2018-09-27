@@ -1,10 +1,29 @@
 $(document).ready(function(){
 
-  $('button#characterSetUp').on('click', function(){
+  $('button#assignP1').on('click', function(){
+    $('div.characterSetUp').css('display', 'none');
     t3.assignCharSet();
-    $('div#player1 div.icon p').text(t3.player1Char).css('visibility', 'visible');
-    $('div#player2 div.icon p').text(t3.player2Char).css('visibility', 'visible');
-    t3.displayFlashcard(0);
+    $(`div#player1 div.icon p`).text(t3.assignedCharSet[`${t3.player1Char}`]).css('visibility', 'visible');
+    t3.displayFlashcard(1);
+
+    window.setTimeout(function(){
+      $('button#assignP2').css('visibility', 'visible');
+    }, 5000);
+  });
+
+  $('button#assignP2').on('click', function(){
+    $('button#assignP2').css('visibility', 'hidden');
+    $(`div#player2 div.icon p`).text(t3.assignedCharSet[`${t3.player2Char}`]).css('visibility', 'visible');
+    t3.displayFlashcard(2);
+
+    window.setTimeout(function(){
+      $('button#boardSetUp').css('visibility', 'visible');
+    }, 5000);
+  });
+
+  $('button#boardSetUp').on('click', function(){
+    $('div.flashcard').css('display', 'none');
+    $('div.createBoard').css('display', 'block');
   });
 
   $('button#submitLength').on('click', function(){
@@ -14,10 +33,8 @@ $(document).ready(function(){
     $('.reset').css('visibility', 'visible');
   });
 
-  // delegate the click event to the whole document,
-  // and then get the browser to work out whether the click happened to the right element
+  // Delegate the click event to the whole document, and then get the browser to work out whether the click happened to the right element
   $(document).on('click', 'td', function(){
-    // debugger;
     const classNames = $(this)[0].className.split('-');
     const xPos = parseInt(classNames[0]);
     const yPos = parseInt(classNames[1]);
