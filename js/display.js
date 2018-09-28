@@ -17,6 +17,7 @@ $(document).ready(function(){
     $('div.flashcard').css('display', 'block');
     t3.displayFlashcard(playerNum);
 
+    // Remove the flashcard with a timeout and return to the set up
     setTimeout(function(){
       $('div.flashcard').css('display', 'none');
 
@@ -31,7 +32,7 @@ $(document).ready(function(){
       }
 
       $('div.setUp').css('display', 'block');
-    }, 4000);
+    }, 6000);
   });
 
   $('button#boardSetUp').on('click', function(){
