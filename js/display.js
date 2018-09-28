@@ -1,36 +1,35 @@
 $(document).ready(function(){
 
-  $('button#assignP1').on('click', function(){
+  $('button.assignChar').on('click', function(){
+    const playerNum = $(this).val();
+
     $('div.setUp').css('display', 'none');
-    // Assign character set and then assign individual player characters
-    t3.assignCharSet();
-    // Display player 1's character in the grey circle
-    $(`div#player1 div.icon p`).text(t3.assignedCharSet.char1).css('visibility', 'visible');
+
+    // Assign a random character set
+    if(playerNum === "1"){
+      t3.assignCharSet();
+    }
+
+    // Display the player's character in the grey circle
+    $(`div#player${playerNum} div.icon p`).text(t3.assignedCharSet[`char${playerNum}`]).css('visibility', 'visible');
+
     // Display the flashcard
     $('div.flashcard').css('display', 'block');
-    t3.displayFlashcard(1);
-
-    // Change the text for charSetUp and display assignP2 button
-    setTimeout(function(){
-      $('div.flashcard').css('display', 'none');
-      $('div.setUp p').html("Hey <span class='red'>Player 2</span>, you're turn now! Give that assign character button a little click.");
-      $('button#assignP1').css('display', 'none');
-      $('button#assignP2').css('display', 'inline');
-      $('div.setUp').css('display', 'block');
-    }, 4000);
-  });
-
-  $('button#assignP2').on('click', function(){
-    $('div.setUp').css('display', 'none');
-    $(`div#player2 div.icon p`).text(t3.assignedCharSet.char2).css('visibility', 'visible');
-    $('div.flashcard').css('display', 'block');
-    t3.displayFlashcard(2);
+    t3.displayFlashcard(playerNum);
 
     setTimeout(function(){
       $('div.flashcard').css('display', 'none');
-      $('div.setUp p').html("Altogether now... hit the button below to start setting up your board.");
-      $('button#assignP2').css('display', 'none');
-      $('button#boardSetUp').css('display', 'inline');
+
+      if(playerNum === "1"){
+        $('div.setUp p').html("Hey <span class='red'>Player 2</span>, you're turn now! Give that assign character button a little click.");
+        $('button#assignP1').css('display', 'none');
+        $('button#assignP2').css('display', 'inline');
+      } else {
+        $('div.setUp p').html("Altogether now... hit the button below to start setting up your board.");
+        $('button#assignP2').css('display', 'none');
+        $('button#boardSetUp').css('display', 'inline');
+      }
+
       $('div.setUp').css('display', 'block');
     }, 4000);
   });

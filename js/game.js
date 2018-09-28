@@ -60,7 +60,7 @@ const t3 = {
     this.gameInPlay = true;
     this.assignedCharSet = {};
 
-    // Reset CSS [ --> REFACTOR <-- ]
+    // Reset CSS
     $(`.icon p`).css('visibility', 'hidden');
     $(`.icon`).css('backgroundColor', '#BBB');
     $(`p.win`).css('visibility', 'hidden');
@@ -193,7 +193,7 @@ const t3 = {
     const pronunciation = this.assignedCharSet[`pron${playerNum}`];
     const definition = this.assignedCharSet[`defn${playerNum}`];
 
-    $('div.flashcard h3').text(`Player ${playerNum} you are:`);
+    $('div.flashcard h3').html(`<span class=red>Player ${playerNum}</span> you are:`);
     $('div.flashcard p.pronunciation').html(`Pronunciation: ${pronunciation}`);
     $('div.flashcard p.character').html(`${character}`);
     $('div.flashcard p.definition').html(`Definition: ${definition}`);
