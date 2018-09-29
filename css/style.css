@@ -6,6 +6,7 @@
 
 body {
   font-family: 'courier', monospace;
+  font-size: 16px;
   letter-spacing: 1px;
   line-height: 22px;
 }
@@ -17,7 +18,7 @@ h1 {
 }
 
 h2 {
-  margin: 20px 0;
+  /* margin: 20px 0; */
 }
 
 h1, h2 {
@@ -25,51 +26,64 @@ h1, h2 {
   font-weight: normal;
 }
 
+p {
+  padding-bottom: 15px;
+}
+
 #container {
   width: 99vw;
   margin: 0 auto;
+  margin-top: 30px;
 }
 
 #main {
   display: inline-block;
   width: 48vw;
-  /* background-color: lightyellow; */
 }
 
-.setUp {
-  padding: 50px 0;
+/* GAME SETUP & FLASHCARD DIVS */
+
+.startGame {
   text-align: center;
-  /* background-color: pink; */
 }
 
-.red {
-  color: red;
+.startGame p {
+  font-size: 14px;
 }
 
-.setUp button#assignP2 {
+.startGame p:first-of-type {
+  padding-bottom: 25px;
+}
+
+.startGame input {
+  display: block;
+  width: 70%;
+  border: solid 1px #BBB;
+  padding: 12px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #BBB;
+  letter-spacing: 1px;
+}
+
+.startGame button {
+
+}
+
+.flashcard {
   display: none;
-}
-
-.setUp button#boardSetUp {
-  display: none;
-}
-
-.setUp button {
-  margin-top: 30px;
 }
 
 .boardSetUp {
   display: none;
 }
 
-.boardSetUp #lengthInput {
-  display: block;
-  margin: 30px auto 0;
-  font-size: 12px;
-  color: #BBB;
-  padding: 15px;
-  width: 60%;
+
+
+.red {
+  color: red;
 }
+
 
 /* .radio {
   padding-top: 10px;
@@ -110,12 +124,12 @@ td {
   vertical-align: middle;
 }
 
-#player1, #player2 {
+#human, #computer {
   display: inline-block;
   width: 25vw;
   vertical-align: top;
   text-align: center;
-  padding-top: 20px;
+  visibility: hidden;
   /* background-color: lightblue; */
 }
 
@@ -125,14 +139,13 @@ td {
   background-color: #BBB;
   width: 80px;
   height: 80px;
-  margin: 0 auto;
+  margin: 15px auto;
   border-radius: 50%;
 }
 
 .icon p {
   line-height: 80px;
   color: white;
-  visibility: hidden;
 }
 
 .win {
@@ -163,16 +176,19 @@ td {
 }
 
 button {
-  border: solid 2px #BBB;
-  background-color: white;
-  padding: 10px;
+  border: solid 2px white;
+  background-color: #BBB;
+  color: white;
+  padding: 12px;
   font-size: 12px;
   letter-spacing: 1px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 button:hover {
-  border-color: red;
+  border: solid 2px #BBB;
+  background-color: white;
+  color: #BBB;
 }
 
 input:focus {

@@ -19,8 +19,8 @@
 
   <div id="container">
 
-    <div id="player1" class="player">
-      <h2>Player 1</h2>
+    <div id="human">
+      <h2> </h2>
       <div class="icon">
         <p>X</p>
       </div>
@@ -57,17 +57,24 @@
       </div> -->
 
       <!-- GET STARTED -->
-      <div class="instructions">
-        <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
-        <button class="assignChar">ASSIGN CHARACTER &gt&gt</button>
+      <div class="startGame">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga fugiat mollitia nostrum distinctio voluptatibus eaque ullam beatae non, itaque repudiandae dolor, pariatur consequatur vero in maxime ipsam quibusdam excepturi.</p>
+
+        <p>To get started enter your name below and then hit that get started button.</p>
+
+        <input id="playerName" type="text" placeholder="Please enter your name..." />
+        <button>GET STARTED &gt&gt</button>
       </div>
 
       <!-- PLAYER FLASHCARD -->
       <div class="flashcard">
-        <h3></h3>
-        <p class="pronunciation"></p>
-        <p class="character"></p>
-        <p class="definition"></p>
+        <div class="characterInfo">
+          <h3></h3>
+          <p class="pronunciation"></p>
+          <p class="character"></p>
+          <p class="definition"></p>
+        </div>
+        <button>GET STARTED &gt&gt</button>
       </div>
 
       <!-- COMPUTER FLASHCARD -->
@@ -79,7 +86,7 @@
       </div>
 
     <!-- BOARD SET UP -->
-      <div class="instructions">
+      <div class="boardSetUp">
         <p>Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.</p>
         <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
         <button id="createBoard">MAKE MY BOARD &gt&gt</button>
@@ -89,7 +96,7 @@
       <table></table>
 
     </div><div
-    id="player2" class="player">
+    id="computer">
       <h2>Player 2</h2>
       <div class="icon">
         <p>O</p>

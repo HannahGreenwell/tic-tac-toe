@@ -34,7 +34,8 @@ const t3 = {
   movesCount: 0,
   gameInPlay: true,
 
-  assignedCharSet: {},
+  humanChar: {},
+  computerChar: {},
 
   updateBoard: function(xPos, yPos, content){
     $(`td.${xPos}r-${yPos}c`).text(content);
@@ -183,9 +184,32 @@ const t3 = {
   }, // playRound
 
   // GAME SETUP
-  assignCharSet: function(){
+  assignCharacters: function(){
+    // Select a random array index
     const randomIndex = Math.floor(Math.random() * this.charSets.length);
-    this.assignedCharSet = this.charSets[randomIndex];
+
+    // Update the global variables humanChar and computerChar with the assigned character information
+    this.humanChar = {
+      char: this.charSets[randomIndex].char1,
+      pron: this.charSets[randomIndex].pron1,
+      defn: this.charSets[randomIndex].defn1,
+    };
+
+    this.computerChar = {
+      char: this.charSets[randomIndex].char2,
+      pron: this.charSets[randomIndex].pron2,
+      defn: this.charSets[randomIndex].defn2,
+    };
+
+  },
+
+  displayPlayerSidebar: function(player, playerName){
+    // Add the player's name to their sidebar
+    $(`#${player} h2`).text(playerName);
+    // Add the player's character to their sidebar
+    $(`#${player} div.icon p`).text(this[`${player}Char`].char);
+    // Display the player sidebar
+    $(`#${player}`).css('visibility', 'visible');
   },
 
   displayFlashcard: function(playerNum){
