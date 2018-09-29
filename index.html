@@ -20,41 +20,13 @@
   <div id="container">
 
     <div id="human">
-      <h2> </h2>
+      <h2></h2>
       <div class="icon">
-        <p>X</p>
+        <p></p>
       </div>
       <p class="win">You Win!</p>
-      <button class='cheat' value='1'>CHEAT</button>
-    </div><div
+    </div><!-- human --><div
     id="main">
-
-      <!-- <div class="setUp">
-        <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
-        <button id="assignP1" class="assignChar" value="1">ASSIGN CHARACTER &gt&gt</button>
-        <button id="assignP2" class="assignChar" value="2">ASSIGN CHARACTER &gt&gt</button>
-        <button id="boardSetUp">BOARD SETUP &gt&gt</button>
-        <div class="boardSetUp">
-          <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
-          <div class="radio">
-            <input type="radio" id="3" name="boardLength" value="3" checked />
-            <label for="3">Easy <span class="grey">(3 x 3)</span></label>
-          </div>
-          <div class="radio">
-            <input type="radio" id="4" name="boardLength" value="4" />
-            <label for="4">Medium <span class="grey">(4 x 4)</span></label>
-          </div>
-          <div class="radio">
-            <input type="radio" id="6" name="boardLength" value="6" />
-            <label for="6">Hard <span class="grey">(6 x 6)</span></label>
-          </div>
-          <div class="radio">
-            <input type="radio" id="10" name="boardLength" value="10" />
-            <label for="20">Extra Hard <span class="grey">(10 x 10)</span></label>
-          </div>
-          <button id="createBoard">MAKE MY BOARD &gt&gt</button>
-        </div>
-      </div> -->
 
       <!-- GET STARTED -->
       <div class="startGame">
@@ -64,48 +36,35 @@
 
         <input id="playerName" type="text" placeholder="Please enter your name..." />
         <button>GET STARTED &gt&gt</button>
-      </div>
+      </div> <!-- startGame -->
 
       <!-- PLAYER FLASHCARD -->
       <div class="flashcard">
-        <div class="characterInfo">
-          <h3></h3>
-          <p class="pronunciation"></p>
-          <p class="character"></p>
-          <p class="definition"></p>
-        </div>
-        <button>GET STARTED &gt&gt</button>
-      </div>
-
-      <!-- COMPUTER FLASHCARD -->
-      <div class="flashcard">
-        <h3></h3>
+        <p></p>
         <p class="pronunciation"></p>
         <p class="character"></p>
         <p class="definition"></p>
-      </div>
+        <p>Finished reviewing your character? Hit the button below to size up your opponent.</p>
+        <button>OPPONENT &gt&gt</button>
+      </div> <!-- flashcard -->
 
-    <!-- BOARD SET UP -->
+      <!-- BOARD SET UP -->
       <div class="boardSetUp">
-        <p>Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.</p>
-        <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
-        <button id="createBoard">MAKE MY BOARD &gt&gt</button>
-      </div>
+      </div> <!-- boardSetUp -->
 
-    <!-- GAME BOARD -->
+      <!-- GAME BOARD -->
       <table></table>
 
-    </div><div
+    </div><!-- main --><div
     id="computer">
-      <h2>Player 2</h2>
+      <h2></h2>
       <div class="icon">
-        <p>O</p>
+        <p></p>
       </div>
       <p class="win">You Win!</p>
-      <button class='cheat' value='2'>CHEAT</button>
-    </div>
+    </div> <!-- computer -->
 
-    <div class="btm">
+    <div class="bottom">
       <p class="alert">It's a draw! You're both losers!</p>
       <button class="reset">RESET &gt&gt</button>
     </div>

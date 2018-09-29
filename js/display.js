@@ -11,35 +11,11 @@ $(document).ready(function(){
 
     // Set-up and then display the player's sidebar
     const playerName = $('#playerName').val();
-    t3.displayPlayerSidebar('human', playerName);
+    t3.displaySidebar('human', playerName);
 
-  });
-
-
-
-  // $('button.assignChar').on('click', function(){
-  //   // Hide the character set up instructions
-  //   $('div.instructions').css('display', 'none');
-  //
-  //   // Assign a random character set
-  //   t3.assignCharSet();
-  //
-  //   // Make into function
-  //   $(`div#player${playerNum} div.icon p`).text(t3.assignedCharSet[`char${playerNum}`]).css('visibility', 'visible');
-  //   t3.displayFlashcard(playerNum);
-  //   $('div.flashcard').css('display', 'block');
-  //
-  //   window.setTimeout(function(){
-  //     //Display Player 2 Flashcard
-  //   }, 1000);
-  //
-  //   window.setTimeout(function(){
-  //     //Display board set up instructions
-  //   }, 1000);
-  // });
-
-  $('button#boardSetUp').on('click', function(){
-
+    debugger;
+    // Set-up and then display the player's flashcard
+    t3.displayFlashcard('human', playerName);
   });
 
   $('button#createBoard').on('click', function(){

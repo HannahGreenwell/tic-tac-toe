@@ -203,24 +203,30 @@ const t3 = {
 
   },
 
-  displayPlayerSidebar: function(player, playerName){
+  displaySidebar: function(player, playerName){
     // Add the player's name to their sidebar
     $(`#${player} h2`).text(playerName);
     // Add the player's character to their sidebar
     $(`#${player} div.icon p`).text(this[`${player}Char`].char);
-    // Display the player sidebar
+    // Display the player's sidebar
     $(`#${player}`).css('visibility', 'visible');
   },
 
-  displayFlashcard: function(playerNum){
-    const character = this.assignedCharSet[`char${playerNum}`];
-    const pronunciation = this.assignedCharSet[`pron${playerNum}`];
-    const definition = this.assignedCharSet[`defn${playerNum}`];
+  displayFlashcard: function(player, playerName){
+    // Add the player's name to their flashcard
+    $('.flashcard p:first-child').html(`<span class=red> ${playerName},</span> you will be playing as:`);
 
-    $('div.flashcard h3').html(`<span class=red>Player ${playerNum}</span> you are:`);
+    // Store the player's character info in variables and then add them to the flashcard
+    const character = this[`${player}Char`].char;
+    const pronunciation = this[`${player}Char`].pron;
+    const definition = this[`${player}Char`].defn;
+
     $('div.flashcard p.pronunciation').html(`Pronunciation: ${pronunciation}`);
     $('div.flashcard p.character').html(`${character}`);
     $('div.flashcard p.definition').html(`Definition: ${definition}`);
+
+    // Display the flashcard
+    $('.flashcard').css('visibility', 'visible');
   },
 
   createBoard: function(length){
