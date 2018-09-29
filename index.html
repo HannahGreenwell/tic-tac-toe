@@ -29,18 +29,40 @@
     </div><div
     id="main">
 
-      <div class="setUp">
+      <!-- <div class="setUp">
         <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
         <button id="assignP1" class="assignChar" value="1">ASSIGN CHARACTER &gt&gt</button>
         <button id="assignP2" class="assignChar" value="2">ASSIGN CHARACTER &gt&gt</button>
         <button id="boardSetUp">BOARD SETUP &gt&gt</button>
         <div class="boardSetUp">
           <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
-          <!-- <select> -->
+          <div class="radio">
+            <input type="radio" id="3" name="boardLength" value="3" checked />
+            <label for="3">Easy <span class="grey">(3 x 3)</span></label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="4" name="boardLength" value="4" />
+            <label for="4">Medium <span class="grey">(4 x 4)</span></label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="6" name="boardLength" value="6" />
+            <label for="6">Hard <span class="grey">(6 x 6)</span></label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="10" name="boardLength" value="10" />
+            <label for="20">Extra Hard <span class="grey">(10 x 10)</span></label>
+          </div>
           <button id="createBoard">MAKE MY BOARD &gt&gt</button>
         </div>
+      </div> -->
+
+      <!-- GET STARTED -->
+      <div class="instructions">
+        <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
+        <button class="assignChar">ASSIGN CHARACTER &gt&gt</button>
       </div>
 
+      <!-- PLAYER FLASHCARD -->
       <div class="flashcard">
         <h3></h3>
         <p class="pronunciation"></p>
@@ -48,6 +70,22 @@
         <p class="definition"></p>
       </div>
 
+      <!-- COMPUTER FLASHCARD -->
+      <div class="flashcard">
+        <h3></h3>
+        <p class="pronunciation"></p>
+        <p class="character"></p>
+        <p class="definition"></p>
+      </div>
+
+    <!-- BOARD SET UP -->
+      <div class="instructions">
+        <p>Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.</p>
+        <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
+        <button id="createBoard">MAKE MY BOARD &gt&gt</button>
+      </div>
+
+    <!-- GAME BOARD -->
       <table></table>
 
     </div><div

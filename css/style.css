@@ -71,6 +71,19 @@ h1, h2 {
   width: 60%;
 }
 
+/* .radio {
+  padding-top: 10px;
+  font-weight: 300;
+}
+
+.radio:first-of-type {
+  margin-top: 15px;
+}
+
+.grey {
+  color: #AAA;
+} */
+
 .flashcard {
   display: none;
   text-align: center;
