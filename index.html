@@ -19,13 +19,17 @@
 
   <div id="container">
 
-    <div id="human">
-      <h2></h2>
-      <div class="icon">
-        <p></p>
-      </div>
-      <p class="win">You Win!</p>
-    </div><!-- human --><div
+    <div class="player">
+
+      <div id="human">
+        <h2></h2>
+        <div class="icon">
+          <p></p>
+        </div>
+        <p class="win">You Win!</p>
+      </div> <!-- human -->
+
+    </div><!-- player --><div
     id="main">
 
       <!-- GET STARTED -->
@@ -40,13 +44,19 @@
 
       <!-- PLAYER FLASHCARD -->
       <div class="flashcard">
-        <p></p>
-        <p class="pronunciation"></p>
+        <p class="message"></p>
         <p class="character"></p>
+        <p class="pronunciation"></p>
         <p class="definition"></p>
-        <p>Finished reviewing your character? Hit the button below to size up your opponent.</p>
-        <button>OPPONENT &gt&gt</button>
+
+        <div class="next">
+          <p class="grey"> • • • </p>
+          <p>Finished reviewing your character? Hit the 'next' button below to size up your opponent.</p>
+          <button>NEXT &gt&gt</button>
+        </div>
       </div> <!-- flashcard -->
+
+
 
       <!-- BOARD SET UP -->
       <div class="boardSetUp">
@@ -56,14 +66,17 @@
       <table></table>
 
     </div><!-- main --><div
-    id="computer">
-      <h2></h2>
-      <div class="icon">
-        <p></p>
-      </div>
-      <p class="win">You Win!</p>
-    </div> <!-- computer -->
+    class="player">
 
+      <div id="computer">
+        <h2></h2>
+        <div class="icon">
+          <p></p>
+        </div>
+        <p class="win">You Win!</p>
+      </div> <!-- computer -->
+
+    </div><!-- player -->
     <div class="bottom">
       <p class="alert">It's a draw! You're both losers!</p>
       <button class="reset">RESET &gt&gt</button>

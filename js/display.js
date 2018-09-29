@@ -2,9 +2,7 @@ $(document).ready(function(){
 
   $('div.startGame button').on('click', function(){
     // Hide the startGame div
-    $('div.startGame').fadeOut(200, function(){
-      $(this).remove();
-    });
+    $('div.startGame').css('display', 'none');
 
     // Randomly assign players characters
     t3.assignCharacters();
@@ -13,9 +11,17 @@ $(document).ready(function(){
     const playerName = $('#playerName').val();
     t3.displaySidebar('human', playerName);
 
-    debugger;
     // Set-up and then display the player's flashcard
     t3.displayFlashcard('human', playerName);
+  });
+
+  $('div.next button').on('click', function(){
+    // Hide the previous flashcard
+    $('div.flashcard').css('display', 'none');
+
+    // Display the player's sidebar and flashcard
+    t3.displaySidebar('computer', 'Computer');
+    t3.displayFlashcard('computer', 'Computer');
   });
 
   $('button#createBoard').on('click', function(){
@@ -31,7 +37,6 @@ $(document).ready(function(){
     $('button.cheat').css('visibility', 'visible');
   });
 
-  // Delegate the click event to the whole document, and then get the browser to work out whether the click happened to the right element
   $(document).on('click', 'td', function(){
     const classNames = $(this)[0].className.split('-');
     const xPos = parseInt(classNames[0]);
@@ -56,7 +61,4 @@ $(document).ready(function(){
     t3.resetGame()
   });
 
-  $('input#lengthInput').on('focus', function(){
-    $(this).val('');
-  });
 }); // $(document).ready

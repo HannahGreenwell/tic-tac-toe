@@ -208,13 +208,13 @@ const t3 = {
     $(`#${player} h2`).text(playerName);
     // Add the player's character to their sidebar
     $(`#${player} div.icon p`).text(this[`${player}Char`].char);
-    // Display the player's sidebar
-    $(`#${player}`).css('visibility', 'visible');
+    // Display the player's sidebar and then call displayFlashcard
+    $(`#${player}`).fadeIn(1000);
   },
 
   displayFlashcard: function(player, playerName){
     // Add the player's name to their flashcard
-    $('.flashcard p:first-child').html(`<span class=red> ${playerName},</span> you will be playing as:`);
+    $('.flashcard p.message').html(`<span class=red> ${playerName},</span> you will be playing as:`);
 
     // Store the player's character info in variables and then add them to the flashcard
     const character = this[`${player}Char`].char;
@@ -226,7 +226,11 @@ const t3 = {
     $('div.flashcard p.definition').html(`Definition: ${definition}`);
 
     // Display the flashcard
-    $('.flashcard').css('visibility', 'visible');
+    $('.flashcard').fadeIn(1000);
+
+    // Display the NEXT text and button 4 seconds after displaying the flashcard
+    setTimeout(function(){
+      $('.next').fadeIn(1000)}, 4000);
   },
 
   createBoard: function(length){
@@ -239,6 +243,6 @@ const t3 = {
         this.updateBoard(i, j, '');
       }
     }
-    $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
+    $('td').css({width: `${49 / length}vw`, height: `${49 / length}vw`});
   },
 }; // ticTacToe

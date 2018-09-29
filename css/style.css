@@ -53,13 +53,15 @@ button:focus {
   margin-top: 30px;
 }
 
-#human, #computer {
+.player {
   display: inline-block;
   width: 25vw;
   vertical-align: top;
+}
+
+#human, #computer {
   text-align: center;
-  visibility: hidden;
-  /* background-color: lightblue; */
+  display: none;
 }
 
 .icon {
@@ -84,7 +86,7 @@ button:focus {
 /* GAME SETUP & FLASHCARD DIVS */
 #main {
   display: inline-block;
-  width: 48vw;
+  width: 49vw;
 }
 
 .startGame {
@@ -106,13 +108,30 @@ button:focus {
   padding: 12px;
   margin: 0 auto;
   font-size: 12px;
-  color: #BBB;
+  color: red;
   letter-spacing: 1px;
 }
 
 .flashcard {
-  visibility: hidden;
+  display: none;
   text-align: center;
+}
+
+.flashcard .character {
+  color: red;
+  font-size: 70px;
+  line-height: 70px;
+  margin: 40px;
+}
+
+.next {
+  display: none;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.next button {
+  margin-top: 0px;
 }
 
 .boardSetUp {
@@ -121,6 +140,10 @@ button:focus {
 
 .red {
   color: red;
+}
+
+.grey {
+  color: #BBB;
 }
 
 /* td {
