@@ -37,6 +37,7 @@ const t3 = {
   humanChar: {},
   computerChar: {},
 
+  ////////// UPDATE GAME DISPLAY //////////
   updateBoard: function(xPos, yPos, content){
     $(`td.${xPos}r-${yPos}c`).text(content);
   },
@@ -74,7 +75,7 @@ const t3 = {
     $('div.setUp').css('display', 'block');
   }, // resetGame
 
-  // PLAY ROUND
+  ////////// PLAY ROUND //////////
   addMove: function(xPos, yPos){
     const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet.char1) : (this.assignedCharSet.char2);
 
@@ -183,7 +184,7 @@ const t3 = {
 
   }, // playRound
 
-  // GAME SETUP
+  ////////// GAME SETUP //////////
   assignCharacters: function(){
     // Select a random array index
     const randomIndex = Math.floor(Math.random() * this.charSets.length);
@@ -203,19 +204,7 @@ const t3 = {
 
   },
 
-  displaySidebar: function(player, playerName){
-    // Add the player's name to their sidebar
-    $(`#${player} h2`).text(playerName);
-    // Add the player's character to their sidebar
-    $(`#${player} div.icon p`).text(this[`${player}Char`].char);
-    // Display the player's sidebar and then call displayFlashcard
-    $(`#${player}`).fadeIn(1000);
-  },
-
-  displayFlashcard: function(player, playerName){
-    // Add the player's name to their flashcard
-    $('.flashcard p.message').html(`<span class=red> ${playerName},</span> you will be playing as:`);
-
+  displayFlashcard: function(player){
     // Store the player's character info in variables and then add them to the flashcard
     const character = this[`${player}Char`].char;
     const pronunciation = this[`${player}Char`].pron;
@@ -227,10 +216,20 @@ const t3 = {
 
     // Display the flashcard
     $('.flashcard').fadeIn(1000);
+    this.startTimer();
+  },
 
-    // Display the NEXT text and button 4 seconds after displaying the flashcard
-    setTimeout(function(){
-      $('.next').fadeIn(1000)}, 4000);
+  startTimer: function(){
+    let sec = 8;
+
+    const timer = setInterval(function(){
+      $('.timer p').text(sec);
+      sec--;
+
+      if(sec < 0){
+        clearInterval(timer);
+      }
+    }, 1000);
   },
 
   createBoard: function(length){
@@ -245,4 +244,5 @@ const t3 = {
     }
     $('td').css({width: `${49 / length}vw`, height: `${49 / length}vw`});
   },
+
 }; // ticTacToe

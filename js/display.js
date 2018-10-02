@@ -4,25 +4,37 @@ $(document).ready(function(){
     // Hide the startGame div
     $('div.startGame').css('display', 'none');
 
-    // Randomly assign players characters
+    // Add the player's name to their sidebar and display both sidebars
+    const playerName = $('#playerName').val();
+    $('#human h2').text(playerName);
+    $('#human').fadeIn(1000);
+    $('#computer').fadeIn(1000);
+
+    // Add the player's name to the character set-up instructions and display the instructions
+    $('div.charSetUp p').prepend(`<span class=red>${playerName}, </span>`);
+    $('div.charSetUp').fadeIn(1000);
+  });
+
+  $('div.charSetUp button').on('click', function(){
+    // Hide the character set-up instructions
+    $('div.charSetUp').css('display', 'none');
+
+    // Randomly assign players a character
     t3.assignCharacters();
 
-    // Set-up and then display the player's sidebar
-    const playerName = $('#playerName').val();
-    t3.displaySidebar('human', playerName);
+    // Display the player's character in their sidebar
+    $('#human .icon p').text(t3.humanChar.char);
 
-    // Set-up and then display the player's flashcard
-    t3.displayFlashcard('human', playerName);
+    // Set-up and display the player's flashcard
+    t3.displayFlashcard('human');
+
+    // Hide the flashcard and display next instructions after 10 secs
+    setTimeout(function(){
+      $('div.flashcard').css('display', 'none');
+      $('div.charSetUp').css('display', 'block');
+    }, 10000);
   });
 
-  $('div.next button').on('click', function(){
-    // Hide the previous flashcard
-    $('div.flashcard').css('display', 'none');
-
-    // Display the player's sidebar and flashcard
-    t3.displaySidebar('computer', 'Computer');
-    t3.displayFlashcard('computer', 'Computer');
-  });
 
   $('button#createBoard').on('click', function(){
     // Hide the create board instructions
