@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
-  $('button.assignChar').on('click', function(){
+  $('button.assignP1Char').on('click', function(){
+
     const playerNum = $(this).val();
 
+    // Hide the set-up instructions
     $('div.setUp').css('display', 'none');
 
     // Assign a random character set
