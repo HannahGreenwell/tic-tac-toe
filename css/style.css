@@ -9,97 +9,39 @@
 body {
   font-family: courier, monospace;
   font-size: 16px;
-  line-height: 1.7em;
-  margin: 20px 0;
+  line-height: 1.6em;
+  margin: 1.5em 0.5em;
+  text-align: center;
 }
 
 h1 {
-  margin-bottom: 20px;
-}
-
-h2 {
-  margin: 20px 0;
-}
-
-h1, h2 {
-  text-align: center;
-  font-weight: normal;
+  font-size: 1.1em;
 }
 
 p {
-  text-align: center;
-}
-
-.main-container {
-  display: grid;
-  grid-template-columns: 1fr 2.5fr 1fr;
-  /* border: solid 1px black; */
-}
-
-.game-board-instructions {
-  /* border: solid 1px black; */
-}
-
-.player {
-  /* border: solid 1px black; */
+  font-size: 0.9em;
 }
 
 .red {
   color: red;
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-column-gap: 0.6em;
+  margin: 1.5em 0;
+}
+
 .assign-char-p2-instructions, .board-setup, .flashcard, .reset-draw-message, .cheat {
   display: none;
 }
 
-#length-input {
-  display: block;
-  margin: 30px auto 0;
-  font-size: 12px;
-  color: #BBB;
-  padding: 15px;
-  width: 60%;
-}
-
-.flashcard {
-  text-align: center;
-}
-
-.flashcard h3 {
-  margin: 40px;
-  text-transform: uppercase;
-}
-
-.flashcard p {
-  margin: 40px;
-}
-
-.flashcard .character {
-  font-size: 50px;
-  color: red;
-  padding: 30px;
-}
-
-td {
-  border: solid 2px black;
-  text-align: center;
-  vertical-align: middle;
-}
-
-#player1, #player2 {
-  vertical-align: top;
-  text-align: center;
-  padding-top: 20px;
-  /* background-color: lightblue; */
-}
-
 .icon {
-  display: inline-block;
-  text-align: center;
   background-color: #BBB;
   width: 80px;
   height: 80px;
-  margin: 0 auto;
+  margin: 1em auto;
   border-radius: 50%;
 }
 
@@ -110,39 +52,62 @@ td {
 }
 
 .win {
-  text-align: center;
-  padding: 20px 20px 0;
   visibility: hidden;
+}
+
+table {
+  margin: 0 auto;
+}
+
+td {
+  border: solid 2px black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.flashcard h3 {
+  text-transform: uppercase;
+  padding-bottom: 1.5em;
+}
+
+.flashcard p {
+}
+
+.flashcard .character {
+  font-size: 3em;
+  color: red;
+  padding: 1.8em;
 }
 
 .draw-message {
-  margin-top: 10px;
-  font-size: 14px;
+  font-size: 0.9em;
   visibility: hidden;
   color: red;
-}
-
-.reset {
-  margin-top: 20px;
 }
 
 button {
   border: solid 2px #BBB;
   background-color: white;
-  padding: 10px;
-  font-size: 12px;
+  padding: 0.9em;
+  font-size: 0.7em;
   letter-spacing: 1px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 button:hover {
   border-color: red;
 }
 
-input:focus {
-  outline: none;
+#length-input {
+  display: block;
+  margin: 35px auto 0;
+  font-size: 0.8em;
+  color: #BBB;
+  background-color: white;
+  width: 60%;
+  height: 38px;
 }
 
-button:focus {
+input:focus, button:focus, select:focus {
   outline: none;
 }

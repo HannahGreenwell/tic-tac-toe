@@ -30,25 +30,25 @@
 
     <div class="game-board-instructions">
       <div class="assign-char-p1-instructions">
-        <p>Hey
-          <span class="red">Player 1</span>
-          , you're up first! Hit that assign character button to get started.
-        </p>
+        <p>Hey <span class="red">Player 1</span> , you're up first! Hit that assign character button to get started.</p>
         <button id="assign-p1">ASSIGN CHARACTER &gt;&gt;</button>
       </div>
 
       <div class="assign-char-p2-instructions">
-        <p>Hey
-          <span class='red'>Player 2</span>
-          , you're turn now! Give that assign character button a little click.
-        </p>
+        <p>Hey <span class='red'>Player 2</span>, you're turn now! Give that assign character button a little click.</p>
         <button id="assign-p2">ASSIGN CHARACTER &gt;&gt;</button>
       </div>
 
       <div class="board-setup">
-        <p>Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.</p>
-        <input id="length-input" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
-        <button id="create-board">MAKE MY BOARD &gt;&gt;</button>
+        <p>One last step... but you'll need to work together. Select the size of the board you would to play and hit the button below.</p>
+        <select id="length-input">
+          <option disabled selected>Select a board size:</option>
+          <option value="3">Easy (3 x 3)</option>
+          <option value="4">Medium (4 x 4)</option>
+          <option value="6">Hard (6 x 6)</option>
+          <option value="10">Impossible (10 x 10)</option>
+        </select>
+        <button id="create-board">CREATE BOARD &gt;&gt;</button>
       </div>
 
       <div class="flashcard">

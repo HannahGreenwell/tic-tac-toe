@@ -48,8 +48,6 @@ $(document).ready(function(){
     const length = $('#length-input').val();
     t3.createBoard(length);
 
-    // Clear the board length input for the next game
-    $('#length-input').text(' ');
     // Hide the board set-up instructions
     $('.board-setup').hide();
     // Display the div containing the reset button and draw alert message
@@ -92,10 +90,5 @@ $(document).ready(function(){
   $('.reset').on('click', function(){
     // Reset game
     t3.resetGame()
-  });
-
-  // Clear the board length text field on focus
-  $('#length-input').on('focus', function(){
-    $(this).val('');
   });
 }); // $(document).ready

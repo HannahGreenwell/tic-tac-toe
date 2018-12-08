@@ -251,6 +251,6 @@ const t3 = {
       }
     }
     // Set the width and height of the HTML board's cells relative to the board length
-    $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
+    $('td').css({width: `${41 / length}vw`, height: `${41 / length}vw`});
   },
 };
