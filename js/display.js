@@ -49,13 +49,13 @@ $(document).ready(function(){
     t3.createBoard(length);
 
     // Clear the board length input for the next game
-    $('#length-input').text('');
+    $('#length-input').text(' ');
     // Hide the board set-up instructions
     $('.board-setup').hide();
     // Display the div containing the reset button and draw alert message
-    $('.reset-draw-alert').show();
+    $('.reset-draw-message').show();
     // Display both players' cheat buttons
-    $('.cheat').css('visibility', 'visible');
+    $('.cheat').show();
   });
 
   // Game board cell click handler (using delegation)
@@ -88,7 +88,9 @@ $(document).ready(function(){
     $(`td:contains(${playerChar})`).css('color', 'black');
   });
 
+  // Reset button click handler
   $('.reset').on('click', function(){
+    // Reset game
     t3.resetGame()
   });
 

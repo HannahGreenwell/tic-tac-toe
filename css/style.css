@@ -48,11 +48,11 @@ p {
   color: red;
 }
 
-.assign-char-p2-instructions, .go-to-board-setup, .board-setup, .flashcard, .reset-draw-alert {
+.assign-char-p2-instructions, .board-setup, .flashcard, .reset-draw-message, .cheat {
   display: none;
 }
 
-.boardSetUp #lengthInput {
+#length-input {
   display: block;
   margin: 30px auto 0;
   font-size: 12px;
@@ -115,11 +115,7 @@ td {
   visibility: hidden;
 }
 
-.cheat {
-  visibility: hidden;
-}
-  
-.alert {
+.draw-message {
   margin-top: 10px;
   font-size: 14px;
   visibility: hidden;

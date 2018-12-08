@@ -39,20 +39,22 @@ const t3 = {
 
   ///// UPDATE DISPLAY /////
   // Update the content of a cell on the HTML board
-  updateBoard: function(xPos, yPos, content){
-    $(`td[row=${xPos}][column=${yPos}]`).text(content);
+  updateBoard: function(row, col, content){
+    $(`td[row=${row}][column=${col}]`).text(content);
   },
 
   // Update the winning player's sidebar
   displayWinner: function(){
     $(`#player${this.currentPlayer} .icon`).css('background-color', 'red');
-    $(`#player${this.currentPlayer} .win`).show();
+    $(`#player${this.currentPlayer} .win`).css('visibility', 'visible');
   },
 
+  // Update the display to show a draw
   displayDraw: function(){
-    $('.alert').css('visibility', 'visible');
+    $('.draw-message').css('visibility', 'visible');
   },
 
+  // Reset the game
   resetGame: function(){
     // Remove all <tr> and <td>
     $('tr').remove();
@@ -65,90 +67,108 @@ const t3 = {
     this.assignedCharSet = {};
 
     // Reset CSS
-    $(`.icon p`).css('visibility', 'hidden');
-    $(`.icon`).css('backgroundColor', '#BBB');
-    $(`p.win`).css('visibility', 'hidden');
-    $('button.cheat').css('visibility', 'hidden');
-    $('.alert').css('visibility', 'hidden');
-    $('.reset').css('visibility', 'hidden');
-    $('div.setUp p').html("Hey <span class='red'>Player 1</span>, you're up first! Hit that assign character button to get started.");
-    $('div.boardSetUp').css('display', 'none');
-    $('button#assignP1').css('display', 'inline');
-    $('div.setUp').css('display', 'block');
+    $('.icon').css('backgroundColor', '#BBB');
+    $('.icon p').css('visibility', 'hidden');
+    $('.win').css('visibility', 'hidden');
+    $('.draw-message').css('visibility', 'hidden');
+    $('.reset-draw-message').hide();
+    $('.cheat').hide();
+
+    // Display Player 1 character set-up instructions
+    $('.assign-char-p1-instructions').show();
   },
 
 
-  ///// PLAY ROUND /////
-  addMove: function(xPos, yPos){
+  ///// PLAY CURRENT MOVE /////
+  addMove: function(row, col){
+    // Get the player's character
     const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet.char1) : (this.assignedCharSet.char2);
 
-    this.rows[xPos][yPos] = playerIcon;
-    this.updateBoard(xPos, yPos, playerIcon);
+    // Update the board variable with the player's icon
+    this.board[row][col] = playerIcon;
+
+    // Update the HTML board to display the player's icon
+    this.updateBoard(row, col, playerIcon);
+
+    // Increment the moves counter
     this.movesCount++;
   },
 
+  // Takes an array of cells and checks if all the values are equal
   checkAllEqual: function(cells){
     const firstCell = cells[0];
-    const allEqual = cells.every(i => i === firstCell);
+    const allEqual = cells.every(cell => cell === firstCell);
     return allEqual;
   },
 
-  getRow: function(xPos){
-    const row = this.rows[xPos];
-    return this.checkAllEqual(row);
+  // Gets the correct row and returns true if all cells are equal
+  checkRow: function(row){
+    const checkRow = this.board[row];
+    return this.checkAllEqual(checkRow);
   },
 
-  getColumn: function(yPos){
-    const column = [];
+  // Gets the correct column and returns true if all cells are equal
+  checkColumn: function(col){
+    const checkColumn = [];
 
-    for(let i = 0; i < this.rows.length; i++){
-      column[i] = this.rows[i][yPos];
+    for(let i = 0; i < this.board.length; i++){
+      checkColumn[i] = this.board[i][col];
     }
 
-    return this.checkAllEqual(column);
+    return this.checkAllEqual(checkColumn);
   },
 
-  getDiagonal1: function(xPos, yPos){
+  // Gets the TL-BR diagonal and returns true if all cells are equal
+  checkDiagonal1: function(){
     const diagonal = [];
 
-    for(let i = 0; i < this.rows.length; i++){
-      diagonal[i] = this.rows[i][i];
+    for(let i = 0; i < this.board.length; i++){
+      diagonal[i] = this.board[i][i];
     }
 
     return this.checkAllEqual(diagonal);
   },
 
-  getDiagonal2: function(xPos, yPos){
+  // Gets the BL-TR diagonal and returns true if all cells are equal
+  checkDiagonal2: function(){
     const diagonal = [];
-    const maxIndex = this.rows.length - 1;
+    const maxIndex = this.board.length - 1;
 
-    for(let i = 0; i < this.rows.length; i++){
-      diagonal[i] = this.rows[i][maxIndex - i];
+    for(let i = 0; i < this.board.length; i++){
+      diagonal[i] = this.board[i][maxIndex - i];
     }
     return this.checkAllEqual(diagonal);
   },
 
-  checkForWin: function(xPos, yPos){
-    if(this.getRow(xPos)){
+  // Check if current move wins the game
+  checkForWin: function(row, col){
+    // Check the row and return true if their is a win
+    if(this.checkRow(row)){
       return true;
     }
 
-    if(this.getColumn(yPos)){
+    // Check the column and return true if their is a win
+    if(this.checkColumn(col)){
       return true;
     }
 
-    if(xPos === yPos){
-      if(this.getDiagonal1(xPos, yPos)){
+    // If selected cell is on TL-BR diagonal,
+    // check the diagonal and return true if their is a win
+    if(row === col){
+      if(this.checkDiagonal1()){
         return true;
       }
     }
 
-    if((xPos + yPos) === (this.rows.length - 1)){
-      if(this.getDiagonal2(xPos, yPos)){
+    // If selected cell is on TL-BR diagonal,
+    // check the diagonal and return true if their is a win
+    if((row + col) === (this.board.length - 1)){
+      if(this.checkDiagonal2()){
         return true;
       }
     }
 
+    // If current move is not a winning move, return false
     return false;
   },
 
@@ -163,29 +183,34 @@ const t3 = {
       return;
     }
 
-    this.addMove(xPos, yPos);
+    // Add the move to the selected cell
+    this.addMove(row, col);
 
-    const startCheckWinMove = this.rows.length * 2 - 1;
-    const maxMoves = Math.pow(this.rows.length, 2);
+    // Calculate when to start checking for a win and the maximum
+    // number of moves, according to the size of the board
+    const startCheckWinMove = this.board.length * 2 - 1;
+    const maxMoves = Math.pow(this.board.length, 2);
 
-    // Begin checking for a win after the 5th move.
+    // Check whether to check for a win
     if(this.movesCount >= startCheckWinMove){
-      if(this.checkForWin(xPos, yPos)){
+      // Check for win
+      if(this.checkForWin(row, col)){
+        // Update display to show winner and update game state
         this.displayWinner();
         this.gameInPlay = false;
         return;
       }
     }
 
-    // Check for a draw, i.e. all moves have been completed without a win.
+    // Check for a draw, i.e. all moves have been completed without a win
     if(this.movesCount === maxMoves){
+      // Update display to show a draw and update game state
       this.displayDraw();
       this.gameInPlay = false;
     }
 
-    // Switch players before the next round
+    // Update currentPlayer before the next round
     this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
-
   },
 
 
@@ -217,7 +242,7 @@ const t3 = {
       $('table').append('<tr></tr>');
 
       for(let j = 0; j < length; j++){
-        // Adds a cell to the board variable with a falsey value 
+        // Adds a cell to the board variable with a falsey value
         this.board[i][j] = 0;
         // Adds a table cell to the HTML board with corresponding row and column attributes
         $(`table tr:nth-child(${i + 1})`).append(`<td row=${i} column=${j}></td>`);
@@ -228,4 +253,4 @@ const t3 = {
     // Set the width and height of the HTML board's cells relative to the board length
     $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
   },
-}; // ticTacToe
+};
