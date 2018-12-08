@@ -25,5 +25,4 @@ The classic tic-tac-toe (noughts and crosses) game remodelled into a language-le
 - AI opponent.
 
 ### Screenshot
-![Tic-Tac-Toe Screenshot][1]][1]
-[1]: /img/tic-tac-toe_screenshot.png
+![Tic-Tac-Toe Screenshot](/img/tic-tac-toe_screenshot.png)
