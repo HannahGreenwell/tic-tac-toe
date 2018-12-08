@@ -1,8 +1,5 @@
 
 const t3 = {
-
-  rows: [],
-
   charSets: [
     {
       char1: '未',
@@ -30,19 +27,26 @@ const t3 = {
     },
   ],
 
+  // 2D array representing the game board
+  board: [],
+
+  // Current game state
   currentPlayer: 1,
   movesCount: 0,
   gameInPlay: true,
-
   assignedCharSet: {},
 
+
+  ///// UPDATE DISPLAY /////
+  // Update the content of a cell on the HTML board
   updateBoard: function(xPos, yPos, content){
-    $(`td.${xPos}r-${yPos}c`).text(content);
+    $(`td[row=${xPos}][column=${yPos}]`).text(content);
   },
 
+  // Update the winning player's sidebar
   displayWinner: function(){
     $(`#player${this.currentPlayer} .icon`).css('background-color', 'red');
-    $(`#player${this.currentPlayer} .win`).css('visibility', 'visible');
+    $(`#player${this.currentPlayer} .win`).show();
   },
 
   displayDraw: function(){
@@ -54,7 +58,7 @@ const t3 = {
     $('tr').remove();
 
     // Reset all global variables
-    this.rows = [];
+    this.board = [];
     this.currentPlayer = 1;
     this.movesCount = 0;
     this.gameInPlay = true;
@@ -71,22 +75,23 @@ const t3 = {
     $('div.boardSetUp').css('display', 'none');
     $('button#assignP1').css('display', 'inline');
     $('div.setUp').css('display', 'block');
-  }, // resetGame
+  },
 
-  // PLAY ROUND
+
+  ///// PLAY ROUND /////
   addMove: function(xPos, yPos){
     const playerIcon = (this.currentPlayer === 1) ? (this.assignedCharSet.char1) : (this.assignedCharSet.char2);
 
     this.rows[xPos][yPos] = playerIcon;
     this.updateBoard(xPos, yPos, playerIcon);
     this.movesCount++;
-  }, // addMove
+  },
 
   checkAllEqual: function(cells){
     const firstCell = cells[0];
     const allEqual = cells.every(i => i === firstCell);
     return allEqual;
-  }, // checkAllEqual
+  },
 
   getRow: function(xPos){
     const row = this.rows[xPos];
@@ -111,7 +116,7 @@ const t3 = {
     }
 
     return this.checkAllEqual(diagonal);
-  }, // getDiagonal1
+  },
 
   getDiagonal2: function(xPos, yPos){
     const diagonal = [];
@@ -121,7 +126,7 @@ const t3 = {
       diagonal[i] = this.rows[i][maxIndex - i];
     }
     return this.checkAllEqual(diagonal);
-  }, // getDiagonal2
+  },
 
   checkForWin: function(xPos, yPos){
     if(this.getRow(xPos)){
@@ -145,18 +150,19 @@ const t3 = {
     }
 
     return false;
-  }, // checkForWin
+  },
 
-  playRound: function(xPos, yPos){
-    // Check if the game is still in play.
+  playCurrentMove: function(row, col){
+    // Check the game's state to see if it is still in play
     if(!this.gameInPlay){
       return;
     }
 
-    // Check that the cell hasn't already been taken.
-    if(this.rows[xPos][yPos]){
+    // Check that the cell hasn't already been taken
+    if(this.board[row][col]){
       return;
     }
+
     this.addMove(xPos, yPos);
 
     const startCheckWinMove = this.rows.length * 2 - 1;
@@ -180,15 +186,18 @@ const t3 = {
     // Switch players before the next round
     this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
 
-  }, // playRound
+  },
 
-  // GAME SETUP
+
+  ///// GAME SETUP /////
+  // Assign current game a random character set
   assignCharSet: function(){
     const randomIndex = Math.floor(Math.random() * this.charSets.length);
     this.assignedCharSet = this.charSets[randomIndex];
   },
 
-  displayFlashcard: function(playerNum){
+  // Add the correct content to each player's character flashcard
+  setupCharacterFlashcard: function(playerNum){
     const character = this.assignedCharSet[`char${playerNum}`];
     const pronunciation = this.assignedCharSet[`pron${playerNum}`];
     const definition = this.assignedCharSet[`defn${playerNum}`];
@@ -199,16 +208,24 @@ const t3 = {
     $('div.flashcard p.definition').html(`Definition: ${definition}`);
   },
 
+  // Create the game board using the inputted board length
   createBoard: function(length){
     for(let i = 0; i < length; i++){
-      this.rows[i] = [];
+      // Adds a 'row' array to the board variable
+      this.board[i] = [];
+      // Adds a table row to the HTML board
       $('table').append('<tr></tr>');
+
       for(let j = 0; j < length; j++){
-        this.rows[i][j] = 0;
-        $(`table tr:nth-child(${i + 1})`).append(`<td class=${i}r-${j}c></td>`);
+        // Adds a cell to the board variable with a falsey value 
+        this.board[i][j] = 0;
+        // Adds a table cell to the HTML board with corresponding row and column attributes
+        $(`table tr:nth-child(${i + 1})`).append(`<td row=${i} column=${j}></td>`);
+        // Update the content of each cell within the HTML board to an empty string (so that the table doesn't collapse)
         this.updateBoard(i, j, '');
       }
     }
+    // Set the width and height of the HTML board's cells relative to the board length
     $('td').css({width: `${48 / length}vw`, height: `${48 / length}vw`});
   },
 }; // ticTacToe

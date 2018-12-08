@@ -1,84 +1,99 @@
+
 $(document).ready(function(){
 
-  $('button.assignP1Char').on('click', function(){
+  // Player 1 'Assign Character' button click handler
+  $('#assign-p1').on('click', function(){
+    // Hide Player 1's character set-up instructions
+    $('.assign-char-p1-instructions').hide();
 
-    const playerNum = $(this).val();
+    // Assign current game a random character set
+    t3.assignCharSet();
 
-    // Hide the set-up instructions
-    $('div.setUp').css('display', 'none');
+    // Display Player 1's character in their sidebar
+    $('#player1 .icon p').text(t3.assignedCharSet['char1']).css('visibility', 'visible');
 
-    // Assign a random character set
-    if(playerNum === "1"){
-      t3.assignCharSet();
-    }
+    // Set up Player 1's flashcard and then display it
+    t3.setupCharacterFlashcard(1);
+    $('div.flashcard').show();
 
-    // Display the player's character in the grey circle
-    $(`div#player${playerNum} div.icon p`).text(t3.assignedCharSet[`char${playerNum}`]).css('visibility', 'visible');
-
-    // Display the flashcard
-    $('div.flashcard').css('display', 'block');
-    t3.displayFlashcard(playerNum);
-
-    // Remove the flashcard with a timeout and return to the set up
+    // After 5 seconds, hide Player 1's flashcard and then display Player 2's character set-up instructions
     setTimeout(function(){
-      $('div.flashcard').css('display', 'none');
-
-      if(playerNum === "1"){
-        $('div.setUp p').html("Hey <span class='red'>Player 2</span>, you're turn now! Give that assign character button a little click.");
-        $('button#assignP1').css('display', 'none');
-        $('button#assignP2').css('display', 'inline');
-      } else {
-        $('div.setUp p').html("Altogether now... hit the button below to start setting up your board.");
-        $('button#assignP2').css('display', 'none');
-        $('button#boardSetUp').css('display', 'inline');
-      }
-
-      $('div.setUp').css('display', 'block');
-    }, 6000);
+      $('div.flashcard').hide();
+      $('.assign-char-p2-instructions').show();
+    }, 1000);
   });
 
-  $('button#boardSetUp').on('click', function(){
-    $('button#boardSetUp').css('display', 'none');
-    $('div.setUp p').html("Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.");
-    $('div.boardSetUp').css('display', 'block');
+  // Player 2 'Assign Character' button click handler
+  $('#assign-p2').on('click', function(){
+    // Hide Player 2's character set-up instructions
+    $('.assign-char-p2-instructions').hide();
+
+    // Display Player 2's character in their sidebar
+    $('#player2 .icon p').text(t3.assignedCharSet['char2']).css('visibility', 'visible');
+
+    // Set up Player 2's flashcard and then display it
+    t3.setupCharacterFlashcard(2);
+    $('div.flashcard').show();
+
+    // After 5 seconds, hide Player 2's flashcard and then display board set-up instructions
+    setTimeout(function(){
+      $('div.flashcard').hide();
+      $('.board-setup').show();
+    }, 1000);
   });
 
-  $('button#createBoard').on('click', function(){
-    const length = $('input#lengthInput').val();
-    $('div.setUp').css('display', 'none');
+  // 'Make My Board' click handler
+  $('#create-board').on('click', function(){
+    // Using the inputted board length, create a new game board
+    const length = $('#length-input').val();
     t3.createBoard(length);
-    $('input#lengthInput').text('');
-    $('.reset').css('visibility', 'visible');
-    $('button.cheat').css('visibility', 'visible');
+
+    // Clear the board length input for the next game
+    $('#length-input').text('');
+    // Hide the board set-up instructions
+    $('.board-setup').hide();
+    // Display the div containing the reset button and draw alert message
+    $('.reset-draw-alert').show();
+    // Display both players' cheat buttons
+    $('.cheat').css('visibility', 'visible');
   });
 
-  $('button.cheat').on('mousedown', function(){
+  // Game board cell click handler (using delegation)
+  $(document).on('click', 'td', function(){
+    // Get the clicked row and column from the cell's attributes
+    const row = parseInt($(this).attr('row'));
+    const column = parseInt($(this).attr('column'));
+
+    // Play the current move according to the selected cell
+    t3.playCurrentMove(row, column);
+  });
+
+  // 'Cheat' buttons mousedown event handler
+  $('.cheat').on('mousedown', function(){
+    // Get the player's number and assigned character
     const playerNum = $(this).val();
     const playerChar = t3.assignedCharSet[`char${playerNum}`];
+
+    // Highlight the player's previous moves by changing the font colour to red
     $(`td:contains(${playerChar})`).css('color', 'red');
   });
 
+  // 'Cheat' buttons mouseup event handler
   $('button.cheat').on('mouseup', function(){
+    // Get the player's number and assigned character
     const playerNum = $(this).val();
     const playerChar = t3.assignedCharSet[`char${playerNum}`];
+
+    // Change the font colour of the player's previous moves back to black
     $(`td:contains(${playerChar})`).css('color', 'black');
-  });
-
-  $('input#lengthInput').on('focus', function(){
-    $(this).val('');
-  });
-
-  // Delegate the click event to the whole document, and then get the browser to work out whether the click happened to the right element
-  $(document).on('click', 'td', function(){
-    const classNames = $(this)[0].className.split('-');
-    const xPos = parseInt(classNames[0]);
-    const yPos = parseInt(classNames[1]);
-
-    t3.playRound(xPos, yPos);
   });
 
   $('.reset').on('click', function(){
     t3.resetGame()
   });
 
+  // Clear the board length text field on focus
+  $('#length-input').on('focus', function(){
+    $(this).val('');
+  });
 }); // $(document).ready

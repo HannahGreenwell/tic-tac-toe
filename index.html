@@ -17,7 +17,7 @@
 <body>
   <h1>Tic-Tac-Toe</h1>
 
-  <div id="container">
+  <div class="main-container">
 
     <div id="player1" class="player">
       <h2>Player 1</h2>
@@ -26,18 +26,29 @@
       </div>
       <p class="win">You Win!</p>
       <button class='cheat' value='1'>CHEAT</button>
-    </div><div
-    id="main">
+    </div>
 
-      <div class="setUp">
-        <p>Hey <span class="red">Player 1</span>, you're up first! Hit that assign character button to get started.</p>
-        <button id="assignP1" class="assignChar" >ASSIGN CHARACTER &gt&gt</button>
-        <button id="assignP2" class="assignChar" value="2">ASSIGN CHARACTER &gt&gt</button>
-        <button id="boardSetUp">BOARD SETUP &gt&gt</button>
-        <div class="boardSetUp">
-          <input id="lengthInput" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
-          <button id="createBoard">MAKE MY BOARD &gt&gt</button>
-        </div>
+    <div class="game-board-instructions">
+      <div class="assign-char-p1-instructions">
+        <p>Hey
+          <span class="red">Player 1</span>
+          , you're up first! Hit that assign character button to get started.
+        </p>
+        <button id="assign-p1">ASSIGN CHARACTER &gt;&gt;</button>
+      </div>
+
+      <div class="assign-char-p2-instructions">
+        <p>Hey
+          <span class='red'>Player 2</span>
+          , you're turn now! Give that assign character button a little click.
+        </p>
+        <button id="assign-p2">ASSIGN CHARACTER &gt;&gt;</button>
+      </div>
+
+      <div class="board-setup">
+        <p>Now put your heads together... think of a number between 3 and 10 (the width of your board) and enter it below.</p>
+        <input id="length-input" type="text" placeholder="Enter the size of your board, (e.g. 3)" />
+        <button id="create-board">MAKE MY BOARD &gt;&gt;</button>
       </div>
 
       <div class="flashcard">
@@ -48,9 +59,9 @@
       </div>
 
       <table></table>
+    </div>
 
-    </div><div
-    id="player2" class="player">
+    <div id="player2" class="player">
       <h2>Player 2</h2>
       <div class="icon">
         <p>O</p>
@@ -58,14 +69,11 @@
       <p class="win">You Win!</p>
       <button class='cheat' value='2'>CHEAT</button>
     </div>
-
-    <div class="btm">
-      <p class="alert">It's a draw! You're both losers!</p>
-      <button class="reset">RESET &gt&gt</button>
-    </div>
-
   </div> <!-- container -->
 
+  <div class="reset-draw-alert">
+    <p class="alert">It's a draw! You're both losers!</p>
+    <button class="reset">RESET &gt&gt</button>
+  </div>
 </body>
-
 </html>
